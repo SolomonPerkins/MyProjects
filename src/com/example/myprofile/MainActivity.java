@@ -16,6 +16,7 @@ import android.os.Build;
 public class MainActivity extends ActionBarActivity {
 	
 	ListView projectsListView;
+	ListView slideShowListView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,9 @@ public class MainActivity extends ActionBarActivity {
 
 		//Loads the data
 		getProjectList();
+		
+		//Show slideshow list
+//		getSlideShowList();
 	}
 
 	@Override
@@ -98,6 +102,25 @@ public class MainActivity extends ActionBarActivity {
 		projectsListView.setAdapter(adapter);	
 
 		projectsListView.setOnItemClickListener(new onProjectItemClickListViewItem());
+		
+	}
+	
+	public void getSlideShowList(){
+		SlideShowItem[] slideshowItems = new SlideShowItem[3];
+		
+		slideshowItems[0] = new SlideShowItem(1, "First Image");
+		slideshowItems[1] = new SlideShowItem(2, "Second Image");
+		slideshowItems[2] = new SlideShowItem(3, "Third Image");
+	
+		
+		//Get listview object
+		slideShowListView = (ListView)findViewById(R.id.main_slideshow_list);
+		
+		//Create the array adapter
+		SlideShowArrayAdapterItem adapter = new SlideShowArrayAdapterItem(this, R.layout.fragment_slideshow_item, slideshowItems);
+		
+		//assign adapter to list
+		slideShowListView.setAdapter(adapter);
 		
 	}
 

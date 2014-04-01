@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -15,6 +15,34 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    
+    <!-- Slideshow title bar -->
+    <style name="slideShowTitleBar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">#99000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+    
+    
+    <!--  styles for details view -->
+    <style name="projectDetailsHeaders">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:background">#c5c5c5</item>
+    </style>
+    <style name="projectDetailsContent">
+
     </style>
 
 </resources>
