@@ -6,6 +6,7 @@
     tools:context="com.example.myprofile.MainActivity"
     tools:ignore="MergeRootFrame" >
     
+    
    <ListView 
        android:id="@+id/projects_list"
        android:layout_width="match_parent"

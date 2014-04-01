@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -21,12 +22,8 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		//Loads the data
 		getProjectList();
-		
-		/*if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}*/
 	}
 
 	@Override
@@ -99,6 +96,8 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	
+
+		projectsListView.setOnItemClickListener(new onProjectItemClickListViewItem());
 		
 	}
 
