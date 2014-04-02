@@ -15,8 +15,7 @@
 				<TextView 
 				    style="@style/projectDetailsContent"
 				    android:id="@+id/project_details_introduction_content"
-				    android:singleLine="true"
-				    android:text="Introduction"
+				    android:text="Introduction on all"
 				    android:layout_below="@id/project_details_introduction_title"/>
 				
 				
@@ -31,8 +30,9 @@
 				<!--  details for features -->
 				<ListView 
 				    android:id="@+id/project_details_feature_list"
+				    style="@style/projectDetailsContent"
 				    android:layout_width="fill_parent"
-				    android:layout_height="20dp"
+					android:layout_height="140dp"
 				    android:layout_below="@id/project_details_feature_title">
 				</ListView>
 				
