@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#d4d4d4">
     
 
     <!-- This layout will be similar to that on badoo mobile -->
@@ -12,20 +13,55 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         	
-	    <ListView 
+		<RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    
+			<ImageView 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:adjustViewBounds="true"
+			    android:scaleType="centerCrop"
+			    android:src="@drawable/ubuntu"/>
+		</RelativeLayout>
+		<RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    
+			    <ImageView 
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:adjustViewBounds="true"
+				    android:scaleType="centerCrop"
+				    android:src="@drawable/girl"/>
+		    </RelativeLayout>
+		    <RelativeLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent">
+		    
+			    <ImageView 
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:adjustViewBounds="true"
+				    android:scaleType="centerCrop"
+				    android:src="@drawable/car"/>
+		    </RelativeLayout>
+		<!--  <ListView 
             android:id="@+id/main_slideshow_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-        </ListView>
+        </ListView> -->
+    
     </ViewFlipper>
     
     <!--  load all the links -->
    <FrameLayout 
        android:id="@+id/project_details_wrapper"
        android:layout_width="fill_parent"
-       android:layout_height="wrap_content">
+       android:layout_height="wrap_content" >
        
-       <LinearLayout 
+       <!--  This section has the link which could be click to bring up the details view of the project-->
+       <!-- <LinearLayout 
            android:orientation="vertical"
            android:layout_width="fill_parent"
            android:layout_height="wrap_content">
@@ -46,7 +82,7 @@
                android:layout_gravity="center_horizontal"
                android:background="#4c66a4"
                />
-       </LinearLayout>
+       </LinearLayout> -->
        
        <!-- THe items below are the details of the project -->
        <RelativeLayout 

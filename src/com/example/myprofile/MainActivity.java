@@ -3,14 +3,18 @@ package com.example.myprofile;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.FrameLayout.LayoutParams;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -28,6 +32,13 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Show slideshow list
 //		getSlideShowList();
+		/*FragmentManager fragManager = getFragmentManager();
+		FragmentTransaction ft = fragManager.beginTransaction();
+		DetailsView_Fragment df = new DetailsView_Fragment();
+		ft.show(df);
+		ft.commit();*/
+		
+		hideDetailsView();
 	}
 
 	@Override
@@ -124,4 +135,22 @@ public class MainActivity extends ActionBarActivity {
 		
 	}
 
+	public void hideDetailsView(){
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		//get the fragment to be hiden
+		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
+		View frgView = detailFragment.getView();
+	
+		
+		//hide the fragment
+		//transaction.hide(detailFragment);
+		
+		
+//		View detailFragment = (View) findViewById(R.id.details_fragment);
+	
+		transaction.commit();
+		
+	}
+	
+	
 }
