@@ -1,132 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="1000dp"
     android:orientation="vertical"
-    android:background="#d4d4d4">
+    android:background="#d4d4d4"
+    android:clickable="true">
     
-
-    <!-- This layout will be similar to that on badoo mobile -->
-    <!-- Loads all images for the app -->
-    <ViewFlipper 
-        android:id="@+id/detail_slideshow"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        	
-		<RelativeLayout 
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent">
-		    
-			<ImageView 
+	<RelativeLayout 
+	    android:id="@+id/project_details_wrapper"
+	    android:layout_width="fill_parent"
+       	android:layout_height="fill_parent">
+	    
+	    <!-- This layout will be similar to that on badoo mobile -->
+	    <!-- Loads all images for the app -->
+	    <ViewFlipper 
+	        android:id="@+id/detail_slideshow"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#000">
+	        	
+	        <RelativeLayout 
 			    android:layout_width="fill_parent"
-			    android:layout_height="fill_parent"
-			    android:adjustViewBounds="true"
-			    android:scaleType="centerCrop"
-			    android:src="@drawable/ubuntu"/>
-		</RelativeLayout>
-		<RelativeLayout 
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent">
-		    
-			    <ImageView 
+			    android:layout_height="fill_parent">
+			    
+				    <ImageView 
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:adjustViewBounds="true"
+					    android:scaleType="centerCrop"
+					    android:src="@drawable/car"/>
+			</RelativeLayout>
+			    
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent">
+			    
+				<ImageView 
 				    android:layout_width="fill_parent"
-				    android:layout_height="fill_parent"
+				    android:layout_height="wrap_content"
 				    android:adjustViewBounds="true"
 				    android:scaleType="centerCrop"
-				    android:src="@drawable/girl"/>
-		    </RelativeLayout>
-		    <RelativeLayout 
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent">
-		    
-			    <ImageView 
-				    android:layout_width="fill_parent"
-				    android:layout_height="fill_parent"
-				    android:adjustViewBounds="true"
-				    android:scaleType="centerCrop"
-				    android:src="@drawable/car"/>
-		    </RelativeLayout>
-		<!--  <ListView 
-            android:id="@+id/main_slideshow_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        </ListView> -->
-    
-    </ViewFlipper>
-    
-    <!--  load all the links -->
-   <FrameLayout 
-       android:id="@+id/project_details_wrapper"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content" >
-       
-       <!--  This section has the link which could be click to bring up the details view of the project-->
-       <!-- <LinearLayout 
-           android:orientation="vertical"
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content">
-           
-           <ImageView 
-               android:src="@drawable/ic_launcher"
-               android:layout_width="50dp"
-               android:layout_height="50dp"
-               android:layout_gravity="center_horizontal|bottom"/>
-           <TextView 
-               android:id="@+id/link_text"
-               android:layout_height="wrap_content"
-               android:text="Project Details"
-               android:layout_weight="1"
-               android:layout_width="wrap_content"
-               android:singleLine="true"
-               android:textSize="20dp"
-               android:layout_gravity="center_horizontal"
-               android:background="#4c66a4"
-               />
-       </LinearLayout> -->
-       
-       <!-- THe items below are the details of the project -->
-       <RelativeLayout 
-           android:id="@+id/project_details_content_wrapper"
-           android:layout_width="fill_parent"
-           android:layout_height="100dp">
-    		    <!-- Slideshow fragment -->
-				<TextView 
-				    style="@style/projectDetailsHeaders"
-				    android:id="@+id/project_details_introduction_title"
-				    android:text="Introduction"
-				    />
-				<!-- details for introduction here -->
-				<TextView 
-				    style="@style/projectDetailsContent"
-				    android:id="@+id/project_details_introduction_content"
-				    android:text="Introduction on all"
-				    android:layout_below="@id/project_details_introduction_title"/>
-				
-				
-				
-	
-				<!-- Features (List format) -->
-				<TextView 
-				    style="@style/projectDetailsHeaders"
-				    android:id="@+id/project_details_feature_title"
-				    android:text="Features"
-				    android:layout_below="@id/project_details_introduction_content"/>
-				<!--  details for features -->
-				<ListView 
-				    android:id="@+id/project_details_feature_list"
-				    style="@style/projectDetailsContent"
-				    android:layout_width="fill_parent"
-					android:layout_height="140dp"
-				    android:layout_below="@id/project_details_feature_title">
-				</ListView>
-	
-							
-				<!--  Description -->
-				<TextView 
-				    style="@style/projectDetailsHeaders"
-				    android:text="Description"
-				    android:layout_below="@id/project_details_feature_list"/>
-		</RelativeLayout>	
+				    android:src="@drawable/ubuntu"/>
+			</RelativeLayout>
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent">
+			    
+				    <ImageView 
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:adjustViewBounds="true"
+					    android:scaleType="centerCrop"
+					    android:src="@drawable/girl"/>
+			    </RelativeLayout>
+			    
+			 <ListView 
+	            android:id="@+id/main_slideshow_list"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent">
+	        </ListView>
+	    
+	    </ViewFlipper>
+			
 
-   </FrameLayout>
-</FrameLayout>
+	    <TextView 
+		    style="@style/projectDetailsHeaders"
+		    android:id="@+id/project_details_introduction_title"
+		    android:text="Introduction" 
+		    android:layout_below="@id/detail_slideshow"/>
+				<!-- details for introduction here -->
+		<TextView 
+		    style="@style/projectDetailsContent"
+		    android:id="@+id/project_details_introduction_content"
+		    android:text="A C++ project"
+		    android:layout_below="@id/project_details_introduction_title"/>
+	
+
+		<!-- Features (List format) -->
+		<TextView 
+		    style="@style/projectDetailsHeaders"
+		    android:id="@+id/project_details_feature_title"
+		    android:text="Features"
+		    android:layout_below="@id/project_details_introduction_content"/>
+		<!--  details for features -->
+		<ListView 
+		    android:id="@+id/project_details_feature_list"
+		    style="@style/projectDetailsContent"
+		    android:layout_width="fill_parent"
+			android:layout_height="140dp"
+		    android:layout_below="@id/project_details_feature_title">
+		</ListView>
+
+					
+		<!--  Description -->
+		<TextView 
+		    android:id="@+id/project_details_description_title"
+		    style="@style/projectDetailsHeaders"
+		    android:text="Description"
+		    android:layout_below="@id/project_details_feature_title"/>
+		
+		<TextView 
+		    android:id="@+id/project_details_description_content"
+		    style="@style/projectDetailsContent"
+		    android:text="Adafd aofna ofda oam odf aodfnd osfndo fd i nii d domdo os mdo sndofs dnfo sodf nsod fosd nos fosd ods fods"
+		    android:layout_below="@id/project_details_description_title"/>		
+	    
+	    
+	
+	</RelativeLayout>
+</ScrollView>

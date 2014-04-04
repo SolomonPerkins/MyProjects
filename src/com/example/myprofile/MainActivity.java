@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	ListView projectsListView;
 	ListView slideShowListView;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
 		ft.show(df);
 		ft.commit();*/
 		
-		hideDetailsView();
+//		hideDetailsView();
 	}
 
 	@Override
@@ -141,10 +142,23 @@ public class MainActivity extends ActionBarActivity {
 		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
 		View frgView = detailFragment.getView();
 	
-		
 		//hide the fragment
-		//transaction.hide(detailFragment);
+		transaction.hide(detailFragment);
 		
+//		View detailFragment = (View) findViewById(R.id.details_fragment);
+	
+		transaction.commit();
+		
+	}
+	
+	public void showDetailsView(){
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		//get the fragment to be hiden
+		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
+		View frgView = detailFragment.getView();
+	
+		//hide the fragment
+		transaction.show(detailFragment);
 		
 //		View detailFragment = (View) findViewById(R.id.details_fragment);
 	
