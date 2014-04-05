@@ -9,11 +9,6 @@
         android:title="@string/action_about"
         />
     
-    
-    <item
-        android:id="@+id/action_contact_me"
-        android:orderInCategory="100"
-        android:title="@string/action_contact_me"
-        myproject:showAsAction="never"/>
+
 
 </menu>
