@@ -72,7 +72,7 @@ public class AboutActivity extends ActionBarActivity {
 	public void getMyInfo(){
 		MyDetailsItem[] myDetailsItems = new MyDetailsItem[5];
 		
-		myDetailsItems[0] =  new MyDetailsItem(1, "Education /Secondary", "Clarendon College");
+		myDetailsItems[0] =  new MyDetailsItem(1, "Education", "Clarendon College\nUniversity of Technology, Ja (Bsc. Computer Science)");
 		myDetailsItems[1] =  new MyDetailsItem(2, "Education /Teritary", "University of Technology");
 		myDetailsItems[2] =  new MyDetailsItem(3, "Education /Teritary /Major", "Computer Science");
 		myDetailsItems[3] =  new MyDetailsItem(4, "Employment /History", "Victoria Mutural Bank");
