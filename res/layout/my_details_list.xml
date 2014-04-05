@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+    
+    <View style="@style/lineDivider"/>
+    <TextView 
+        android:id="@+id/me_title"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:singleLine="true"
+        android:text="The Title"
+        android:textSize="16sp"
+        android:padding="4dip" />
+    
+    <TextView 
+        android:id="@+id/me_content"
+        android:layout_below="@+id/me_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:text="The description sao dfao foa fonas foa fdnoa fnoa nfoa fnoa fona fno."
+        android:textSize="14sp"
+        android:padding="4dip" />
+    
+    <View style="@style/lineDivider"/>
+    
+</RelativeLayout>
