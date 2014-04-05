@@ -1,22 +1,20 @@
 package com.example.myprofile;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.FrameLayout.LayoutParams;
-import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -97,27 +95,30 @@ public class MainActivity extends ActionBarActivity {
 	public void getProjectList(){
 		
 		ProjectItem[] projectItems = new ProjectItem[20];
+		Calendar calendar = Calendar.getInstance();
 		
-		projectItems[0] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[1] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[2] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[3] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[4] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[5] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[6] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[7] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[8] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[9] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[10] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[11] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[12] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[13] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[14] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[15] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[16] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[17] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[18] = new ProjectItem(1, "My Project", "Some extra stuff");
-		projectItems[19] = new ProjectItem(1, "My Project", "Some extra stuff");
+		String today = "/Apr 5,2014";
+		
+		projectItems[0] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[1] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[2] = new ProjectItem(1, "Body Mass Index", today, "Some extra stuff", R.drawable.java);
+		projectItems[3] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[4] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[5] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[6] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[7] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[8] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[9] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[10] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[11] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[12] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[13] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[14] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[15] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[16] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[17] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[18] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+		projectItems[19] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
 		
 		//Get ListView object
 		projectsListView = (ListView) findViewById(R.id.projects_list);
@@ -176,7 +177,6 @@ public class MainActivity extends ActionBarActivity {
 		transaction.show(detailFragment);
 		
 //		View detailFragment = (View) findViewById(R.id.details_fragment);
-	
 		transaction.commit();
 		
 	}
