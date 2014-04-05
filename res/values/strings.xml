@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">My Projects</string>
+    <string name="app_name">/Projects</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_contact_me">Contact Me</string>
     <string name="action_about">About</string>

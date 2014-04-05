@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 		ft.show(df);
 		ft.commit();*/
 		
-//		hideDetailsView();
+		hideDetailsView();
 	}
 
 	@Override
