@@ -23,7 +23,7 @@ public class DetailsView_Fragment extends Fragment{
 					ViewGroup container, Bundle savedInstanceState){
 		
 		
-		return inflater.inflate(R.layout.fragment_project_details_2 
+		return inflater.inflate(R.layout.fragment_project_details_2
 				, container, false);
 	}
 	

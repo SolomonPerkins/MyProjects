@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +22,9 @@ public class MainActivity extends ActionBarActivity {
 	
 	ListView projectsListView;
 	ListView slideShowListView;
-
+	Intent intent;
+	
+	public final static String INTENT_Message = "com.example.myproject.MESSAGE";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,21 @@ public class MainActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		String message ="Click link";
+		
+		switch (id) {
+		case R.id.action_about:
+			intent = new Intent(this, AboutActivity.class);
+			intent.putExtra(INTENT_Message, message);
+			startActivity(intent);
+			
+			break;
+		default:
+			
+			break;
 		}
+		
+		
 		return super.onOptionsItemSelected(item);
 	}
 
