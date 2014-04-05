@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ArrayAdapterItem extends ArrayAdapter<ProjectItem>{
@@ -34,10 +35,25 @@ public class ArrayAdapterItem extends ArrayAdapter<ProjectItem>{
 		
 		ProjectItem projectItem = projects[position];
 		
-		//Get the  descript and project name and it
-		TextView projectName = (TextView) convertView.findViewById(R.id.project_name);
-		TextView projectDescription = (TextView) convertView.findViewById(R.id.project_description);
-		projectName.setTag(projectItem.projectId);
+		if(projectItem != null){
+			
+			//Get the  descript and project name and it
+			TextView projectName = (TextView) convertView.findViewById(R.id.project_name);
+			TextView projectDescription = (TextView) convertView.findViewById(R.id.project_description);
+			TextView projectdate = (TextView) convertView.findViewById(R.id.project_date);
+			ImageView programmingLanguage = (ImageView) convertView.findViewById(R.id.project_programming_language);
+
+			
+			
+			projectName.setText(projectItem.getProjectName());
+			projectDescription.setText(projectItem.getProjectDescription());
+			projectdate.setText(projectItem.getProjectDate());
+			programmingLanguage.setImageResource(projectItem.getProgrammingLanguageResourceId());
+			
+			
+			projectName.setTag(projectItem.getProjectId());
+
+		}
 		
 		return convertView;
 	}

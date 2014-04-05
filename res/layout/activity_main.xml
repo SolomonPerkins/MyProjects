@@ -12,5 +12,10 @@
        android:layout_height="match_parent">
    </ListView>
 	        
+   <fragment 
+       android:id="@+id/details_fragment"
+       android:name="com.example.myprofile.DetailsView_Fragment"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"/>
     
 </FrameLayout>

@@ -4,18 +4,32 @@
     android:layout_height="wrap_content"
     android:padding="6dip"
     >
-    	
-    <ImageView 
-        android:id="@+id/project_icon"
-        android:layout_width="wrap_content"
+   
+    <RelativeLayout 
+        android:id="@+id/project_image_wrapper"
+        android:layout_width="60dp"
         android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="6dip"
-        android:contentDescription="The image of the project"
-        android:src="@drawable/ic_launcher"/>
+        android:layout_marginRight="10dp">
+        
+	    <ImageView 
+	        android:id="@+id/project_icon"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginRight="16dip"
+	        android:contentDescription="The image of the project"
+	        android:src="@drawable/ic_launcher"/>
+	    
+	    <ImageView 
+	        android:id="@+id/project_programming_language"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        android:src="@drawable/programming_language"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentRight="true"/>
     
-    
+	</RelativeLayout>    
     
     <TextView 
         android:id="@+id/project_name"
@@ -24,9 +38,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/project_icon"
+        android:layout_toRightOf="@id/project_image_wrapper"
         android:gravity="center_vertical"
         android:text="The Project"
+        android:singleLine="true"
         android:textSize="16sp"/>
 
     <TextView 
@@ -35,9 +50,14 @@
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/project_icon"
+        android:layout_toRightOf="@id/project_image_wrapper"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Compile and run files"
         android:textSize="12sp"/>
+    
+    <TextView 
+        android:id="@+id/project_date"
+        style="@style/date"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

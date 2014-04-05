@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="1000dp"
+    android:orientation="vertical"
+    android:background="#d4d4d4"
+    android:clickable="true">
+    
+	<RelativeLayout 
+	    android:id="@+id/project_details_wrapper"
+	    android:layout_width="fill_parent"
+       	android:layout_height="fill_parent">
+	    
+	    <!-- This layout will be similar to that on badoo mobile -->
+	    <!-- Loads all images for the app -->
+	    <ViewFlipper 
+	        android:id="@+id/detail_slideshow"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#000">
+	        	
+	        <RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent">
+			    
+				    <ImageView 
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:adjustViewBounds="true"
+					    android:scaleType="centerCrop"
+					    android:src="@drawable/car"/>
+			</RelativeLayout>
+			    
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent">
+			    
+				<ImageView 
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:adjustViewBounds="true"
+				    android:scaleType="centerCrop"
+				    android:src="@drawable/ubuntu"/>
+			</RelativeLayout>
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent">
+			    
+				    <ImageView 
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:adjustViewBounds="true"
+					    android:scaleType="centerCrop"
+					    android:src="@drawable/girl"/>
+			    </RelativeLayout>
+			    
+			<!--  <ListView 
+	            android:id="@+id/main_slideshow_list"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent">
+	        </ListView> -->
+	    
+	    </ViewFlipper>
+			
+
+	    <TextView 
+		    style="@style/projectDetailsHeaders"
+		    android:id="@+id/project_details_introduction_title"
+		    android:text="Introduction" 
+		    android:layout_below="@id/detail_slideshow"/>
+				<!-- details for introduction here -->
+		<TextView 
+		    style="@style/projectDetailsContent"
+		    android:id="@+id/project_details_introduction_content"
+		    android:text="A C++ project"
+		    android:layout_below="@id/project_details_introduction_title"/>
+	
+
+		<!-- Features (List format) -->
+		<TextView 
+		    style="@style/projectDetailsHeaders"
+		    android:id="@+id/project_details_feature_title"
+		    android:text="Features"
+		    android:layout_below="@id/project_details_introduction_content"/>
+		<!--  details for features -->
+		<ListView 
+		    android:id="@+id/project_details_feature_list"
+		    style="@style/projectDetailsContent"
+		    android:layout_width="fill_parent"
+			android:layout_height="140dp"
+		    android:layout_below="@id/project_details_feature_title">
+		</ListView>
+
+					
+		<!--  Description -->
+		<TextView 
+		    android:id="@+id/project_details_description_title"
+		    style="@style/projectDetailsHeaders"
+		    android:text="Description"
+		    android:layout_below="@id/project_details_feature_title"/>
+		
+		<TextView 
+		    android:id="@+id/project_details_description_content"
+		    style="@style/projectDetailsContent"
+		    android:text="Adafd aofna ofda oam odf aodfnd osfndo fd i nii d domdo os mdo sndofs dnfo sodf nsod fosd nos fosd ods fods"
+		    android:layout_below="@id/project_details_description_title"/>		
+	    
+	    
+	
+	</RelativeLayout>
+</ScrollView>
