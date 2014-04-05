@@ -38,8 +38,8 @@ public class MyDetailsArrayAdapterItem extends ArrayAdapter<MyDetailsItem>{
 				TextView myContent =(TextView) convertView.findViewById(R.id.me_content);
 				//			myTitle.setTag(myDetailsItem.contactId);
 			
-				myTitle.setText(myDetailsItem.myTitle);
-				myContent.setText(myDetailsItem.myContent);
+				myTitle.setText(myDetailsItem.getMyTitle());
+				myContent.setText(myDetailsItem.getMyContent());
 			}
 			return convertView;
 		}
