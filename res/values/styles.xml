@@ -16,6 +16,40 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    
+    <!-- Slideshow title bar -->
+    <style name="slideShowTitleBar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">#99000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+    
+    
+    <!--  styles for details view -->
+    <style name="projectDetailsHeaders">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:background">#f5f5f5</item>
+        <item name="android:textColor">#8a8a8a</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+    <style name="projectDetailsContent">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingBottom">30dp</item>	
+        <item name="android:paddingLeft">5dp</item>			
+    </style>
 
     
     <style name="lineDivider">

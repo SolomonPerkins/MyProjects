@@ -11,8 +11,8 @@
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="6dip"
-        android:contentDescription="The image of the projectZZ"
+        android:layout_marginRight="16dip"
+        android:contentDescription="The image of the project"
         android:src="@drawable/ic_launcher"/>
     
     
@@ -27,6 +27,7 @@
         android:layout_toRightOf="@id/project_icon"
         android:gravity="center_vertical"
         android:text="The Project"
+        android:singleLine="true"
         android:textSize="16sp"/>
 
     <TextView 

@@ -3,6 +3,8 @@ package com.example.myprofile;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,13 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.FrameLayout.LayoutParams;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 	
 	ListView projectsListView;
+	ListView slideShowListView;
 	Intent intent;
+	
 	public final static String INTENT_Message = "com.example.myproject.MESSAGE";
 	
 	@Override
@@ -24,12 +31,18 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		//Loads the data
 		getProjectList();
 		
-		/*if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}*/
+		//Show slideshow list
+//		getSlideShowList();
+		/*FragmentManager fragManager = getFragmentManager();
+		FragmentTransaction ft = fragManager.beginTransaction();
+		DetailsView_Fragment df = new DetailsView_Fragment();
+		ft.show(df);
+		ft.commit();*/
+		
+//		hideDetailsView();
 	}
 
 	@Override
@@ -114,7 +127,59 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	
+
+		projectsListView.setOnItemClickListener(new onProjectItemClickListViewItem());
+		
+	}
+	
+	public void getSlideShowList(){
+		SlideShowItem[] slideshowItems = new SlideShowItem[3];
+		
+		slideshowItems[0] = new SlideShowItem(1, "First Image");
+		slideshowItems[1] = new SlideShowItem(2, "Second Image");
+		slideshowItems[2] = new SlideShowItem(3, "Third Image");
+	
+		
+		//Get listview object
+		slideShowListView = (ListView)findViewById(R.id.main_slideshow_list);
+		
+		//Create the array adapter
+		SlideShowArrayAdapterItem adapter = new SlideShowArrayAdapterItem(this, R.layout.fragment_slideshow_item, slideshowItems);
+		
+		//assign adapter to list
+		slideShowListView.setAdapter(adapter);
 		
 	}
 
+	public void hideDetailsView(){
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		//get the fragment to be hiden
+		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
+		View frgView = detailFragment.getView();
+	
+		//hide the fragment
+		transaction.hide(detailFragment);
+		
+//		View detailFragment = (View) findViewById(R.id.details_fragment);
+	
+		transaction.commit();
+		
+	}
+	
+	public void showDetailsView(){
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		//get the fragment to be hiden
+		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
+		View frgView = detailFragment.getView();
+	
+		//hide the fragment
+		transaction.show(detailFragment);
+		
+//		View detailFragment = (View) findViewById(R.id.details_fragment);
+	
+		transaction.commit();
+		
+	}
+	
+	
 }
