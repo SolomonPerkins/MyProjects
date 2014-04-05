@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class SwipeGestureDetector extends SimpleOnGestureListener {
@@ -26,6 +27,8 @@ public class SwipeGestureDetector extends SimpleOnGestureListener {
 		/**
 		 * TODO: Create animation xml for right and left swipe. Need to learn how to do that
 		 */
+		
+//		Toast.makeText(, "Android swipe detected", Toast.LENGTH_LONG);
 		
 		try{
 			//Right to left swipe

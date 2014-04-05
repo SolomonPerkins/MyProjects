@@ -54,11 +54,11 @@
 					    android:src="@drawable/girl"/>
 			    </RelativeLayout>
 			    
-			 <ListView 
+			<!--  <ListView 
 	            android:id="@+id/main_slideshow_list"
 	            android:layout_width="fill_parent"
 	            android:layout_height="fill_parent">
-	        </ListView>
+	        </ListView> -->
 	    
 	    </ViewFlipper>
 			
