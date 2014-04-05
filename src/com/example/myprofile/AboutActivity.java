@@ -20,6 +20,7 @@ public class AboutActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 
+		
 		getMyInfo();
 		
 		//Get the Intent
@@ -73,18 +74,19 @@ public class AboutActivity extends ActionBarActivity {
 		
 		myDetailsItems[0] =  new MyDetailsItem(1, "Education /Secondary", "Clarendon College");
 		myDetailsItems[1] =  new MyDetailsItem(2, "Education /Teritary", "University of Technology");
-		myDetailsItems[2] =  new MyDetailsItem(3, "Major /Teritary", "Computer Science");
+		myDetailsItems[2] =  new MyDetailsItem(3, "Education /Teritary /Major", "Computer Science");
 		myDetailsItems[3] =  new MyDetailsItem(4, "Employment /History", "Victoria Mutural Bank");
 		myDetailsItems[4] =  new MyDetailsItem(5, "Employment /Current", "Medullan");
+		
 
 		//Get listview
 		myDetailsListView = (ListView) findViewById(R.id.my_details_list_fragment);
 		
 		//Create the array adapter
-		MyDetailsArrayAdapterItem adapter = new MyDetailsArrayAdapterItem(this, R.layout.my_details_list, myDetailsItems);
-	
+		MyDetailsArrayAdapterItem myadapter = new MyDetailsArrayAdapterItem(this, R.layout.my_details_list, myDetailsItems);
+		
 		//set adapter to list
-		myDetailsListView.setAdapter(adapter);
+		myDetailsListView.setAdapter(myadapter);
 	}
 
 }

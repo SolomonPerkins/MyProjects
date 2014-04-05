@@ -27,32 +27,32 @@
 		 		<TextView 
 		 		    style="@style/clickableLinks"
 		 		    android:singleLine="true"
-		 		    android:gravity="center"
-		 		    android:text="000-000-0000"
+		 		    android:layout_gravity="center"
+		 		    android:text="(876)212-3232"
 		 		    android:layout_height="wrap_content"
-		 		    android:layout_width="fill_parent"
+		 		    android:layout_width="wrap_content"
 		 		    android:autoLink="phone"/>
-		 		<TextView 
+		 		<TextView
 		 		    style="@style/clickableLinks"
 		 		    android:singleLine="true"
-		 		    android:gravity="center"
+		 		    android:layout_gravity="center"
 		 		    android:text="sasdd@gmail.com"
-		 		    android:layout_width="fill_parent"
+		 		    android:layout_width="wrap_content"
 		 		    android:layout_height="wrap_content"
-		 		    android:autoLink="email"
-		 		    />
+		 		    android:autoLink="email"/>
 		 		
 		 	    	    
 		 	    <RelativeLayout 
 		 	        android:layout_width="fill_parent"
-		 	        android:layout_height="500dp">
+		 	        android:layout_height="300dp">
 		 	        
-		 	        <ListView 
+		 	         <View style="@style/lineDivider"/>
+		 	         <ListView 
 		 	            android:id="@+id/my_details_list_fragment"
 		 	            android:layout_width="fill_parent"
 		 	            android:layout_height="fill_parent">
 		 	        </ListView>
-		 	        
+		 	    
 		 	    </RelativeLayout>
 	</LinearLayout>   			
 </ScrollView>

@@ -31,12 +31,16 @@ public class MyDetailsArrayAdapterItem extends ArrayAdapter<MyDetailsItem>{
 				
 			}
 			MyDetailsItem myDetailsItem = myDetails[position];
+			if(myDetailsItem != null){
 		
-			//Get the title and the 
-			TextView myTitle = (TextView) convertView.findViewById(R.id.me_title);
-			TextView myContent =(TextView) convertView.findViewById(R.id.me_content);
-			myTitle.setTag(myDetailsItem.contactId);
+				//Get the title and the 
+				TextView myTitle = (TextView) convertView.findViewById(R.id.me_title);
+				TextView myContent =(TextView) convertView.findViewById(R.id.me_content);
+				//			myTitle.setTag(myDetailsItem.contactId);
 			
+				myTitle.setText(myDetailsItem.myTitle);
+				myContent.setText(myDetailsItem.myContent);
+			}
 			return convertView;
 		}
 		
