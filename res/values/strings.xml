@@ -7,7 +7,7 @@
     <string name="action_about">/About /Contacts</string>
 
     <!-- Project Info -->
-    <string name="title_activity_about">/Who?</string>
+    <string name="title_activity_about">/Who am I?</string>
 
     <!-- About us page -->
     <string name="my_name">Solomon H. Perkins</string>
