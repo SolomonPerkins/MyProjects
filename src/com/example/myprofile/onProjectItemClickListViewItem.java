@@ -3,6 +3,7 @@ package com.example.myprofile;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,12 @@ import android.widget.TextView;
 
 
 public class onProjectItemClickListViewItem implements OnItemClickListener{
+	
+	private DetailsView_Fragment myDetailsFragment;
+	
+	public onProjectItemClickListViewItem(DetailsView_Fragment myDetailsFragment){
+		this.myDetailsFragment = myDetailsFragment;
+	}
 	
 	//Even though you are overriding this function.. it was implemented, hence no override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -33,16 +40,7 @@ public class onProjectItemClickListViewItem implements OnItemClickListener{
 		Toast.makeText(context, "Click view: "+ project_name+" Project_id: "+ project_description, Toast.LENGTH_LONG)
 			.show();
 		
-		
-//		FrameLayout displayFrameLayout = (FrameLayout) parent.findViewById(R.layout.fragment_project_details_2);
-		//View detailsView = (View) displayFrameLayout.findViewById(R.id.details_fragment);
-//		LayoutParams params = (LayoutParams) displayFrameLayout.getLayoutParams();
-
-//		displayFrameLayout.setMinimumHeight(200);
-//		displayFrameLayout.bringToFront();
-//		android.widget.FrameLayout.LayoutParams params = (LayoutParams) displayFrameLayout.getLayoutParams();
-		
-//		params.height = 140;
+		myDetailsFragment.showDetailsView();
 	}
 	
 	

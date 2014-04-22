@@ -27,8 +27,19 @@ public class DetailsView_Fragment extends Fragment{
 				, container, false);
 	}
 	
-	public void showDetailsView(int project_id, final Fragment fragment){
+	public void hideDetailsView(){
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.hide(this);
+		
+		fragmentTransaction.commit();
 	}
 	
+	public void showDetailsView(){
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.show(this);
+		
+		fragmentTransaction.commit();
+		
+	}
 	
 }

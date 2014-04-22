@@ -22,6 +22,12 @@ public class MainActivity extends ActionBarActivity {
 	ListView slideShowListView;
 	Intent intent;
 	
+	//MyFragments
+	DetailsView_Fragment myDetailsFragment;
+	
+	boolean mIsAnimating = false;
+	boolean mSlideUp = false;
+	
 	public final static String INTENT_Message = "com.example.myproject.MESSAGE";
 	
 	@Override
@@ -29,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		setUpDetailsView();
 		//Loads the data
 		getProjectList();
 		
@@ -40,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 		ft.show(df);
 		ft.commit();*/
 		
-		hideDetailsView();
+		
 	}
 
 	@Override
@@ -51,6 +58,10 @@ public class MainActivity extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * When a user selects an option menu it loads activity if about/contacts was selected
+	 * And clicking the backbutton should return it to the previous activity
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -75,22 +86,6 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
 	
 	public void getProjectList(){
 		
@@ -128,8 +123,9 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	
-
-		projectsListView.setOnItemClickListener(new onProjectItemClickListViewItem());
+		
+		//Set up the event listener
+		projectsListView.setOnItemClickListener(new onProjectItemClickListViewItem(myDetailsFragment));
 		
 	}
 	
@@ -152,34 +148,21 @@ public class MainActivity extends ActionBarActivity {
 		
 	}
 
-	public void hideDetailsView(){
-		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+	public void setUpDetailsView(){
+	//	FragmentTransaction transaction = getFragmentManager().beginTransaction();
 		//get the fragment to be hiden
-		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
-		View frgView = detailFragment.getView();
+		myDetailsFragment= (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
+//		View frgView = myDetailsFragment.getView();
 	
 		//hide the fragment
-		transaction.hide(detailFragment);
-		
+//		transaction.hide(myDetailsFragment);
+//		transaction.addToBackStack(null);
 //		View detailFragment = (View) findViewById(R.id.details_fragment);
 	
-		transaction.commit();
+	//	transaction.commit();
 		
+		myDetailsFragment.hideDetailsView();
 	}
-	
-	public void showDetailsView(){
-		FragmentTransaction transaction = getFragmentManager().beginTransaction();
-		//get the fragment to be hiden
-		DetailsView_Fragment detailFragment = (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
-		View frgView = detailFragment.getView();
-	
-		//hide the fragment
-		transaction.show(detailFragment);
 		
-//		View detailFragment = (View) findViewById(R.id.details_fragment);
-		transaction.commit();
-		
-	}
-	
 	
 }
