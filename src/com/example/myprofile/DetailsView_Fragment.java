@@ -22,7 +22,8 @@ public class DetailsView_Fragment extends Fragment{
 	private String introductionMessage;
 	private String descriptionMessage;
 	private ViewFlipper slideShow;
-	private ListView features;
+	private ListView features;	
+	private int selectedProjectId;	//the project user click
 	
 	
 	@Override
@@ -55,9 +56,52 @@ public class DetailsView_Fragment extends Fragment{
 	
 	/**
 	 * Calls all the other child methods to set each data
-	 * 
 	 */
 	public void setDetailsData(){
 		
+	}
+
+	/**
+	 * GETTERS AND SETTERS: all are protected
+	 * 
+	 */
+	protected String getIntroductionMessage() {
+		return introductionMessage;
+	}
+
+	protected void setIntroductionMessage(String introductionMessage) {
+		this.introductionMessage = introductionMessage;
+	}
+
+	protected String getDescriptionMessage() {
+		return descriptionMessage;
+	}
+
+	protected void setDescriptionMessage(String descriptionMessage) {
+		this.descriptionMessage = descriptionMessage;
+	}
+
+	protected ViewFlipper getSlideShow() {
+		return slideShow;
+	}
+
+	protected void setSlideShow(ViewFlipper slideShow) {
+		this.slideShow = slideShow;
+	}
+
+	protected ListView getFeatures() {
+		return features;
+	}
+
+	protected void setFeatures(ListView features) {
+		this.features = features;
+	}
+
+	protected int getSelectedProjectId() {
+		return selectedProjectId;
+	}
+
+	protected void setSelectedProjectId(int selectedProjectId) {
+		this.selectedProjectId = selectedProjectId;
 	}
 }
