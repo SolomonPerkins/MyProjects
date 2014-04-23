@@ -16,6 +16,7 @@ public class SwipeGestureDetector extends SimpleOnGestureListener {
 	private int timeInterval = 4000;
 	/**
 	 * TODO: Include the appropriate context in this location
+	 *
 	 */
 	private Context mContext;
 	
