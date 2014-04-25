@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Show slideshow list
 //		getSlideShowList();
+		
 		/*FragmentManager fragManager = getFragmentManager();
 		FragmentTransaction ft = fragManager.beginTransaction();
 		DetailsView_Fragment df = new DetailsView_Fragment();
@@ -149,18 +150,9 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void setUpDetailsView(){
-	//	FragmentTransaction transaction = getFragmentManager().beginTransaction();
-		//get the fragment to be hiden
+		//Get the fragment and hide it
 		myDetailsFragment= (DetailsView_Fragment)getFragmentManager().findFragmentById(R.id.details_fragment);
-//		View frgView = myDetailsFragment.getView();
-	
-		//hide the fragment
-//		transaction.hide(myDetailsFragment);
-//		transaction.addToBackStack(null);
-//		View detailFragment = (View) findViewById(R.id.details_fragment);
-	
-	//	transaction.commit();
-		
+
 		myDetailsFragment.hideDetailsView();
 	}
 		
