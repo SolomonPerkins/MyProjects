@@ -65,9 +65,21 @@
 
 	    <TextView 
 		    style="@style/projectDetailsHeaders"
+		    android:id="@+id/project_details_name_title"
+		    android:text="Name" 
+		    android:layout_below="@id/detail_slideshow"/>
+				<!-- details for introduction here -->
+		<TextView 
+		    style="@style/projectDetailsContent"
+		    android:id="@+id/project_details_name_content"
+		    android:text="A C++ project"
+		    android:layout_below="@id/project_details_name_title"/>
+	
+	    <TextView 
+		    style="@style/projectDetailsHeaders"
 		    android:id="@+id/project_details_introduction_title"
 		    android:text="Introduction" 
-		    android:layout_below="@id/detail_slideshow"/>
+		    android:layout_below="@id/project_details_name_content"/>
 				<!-- details for introduction here -->
 		<TextView 
 		    style="@style/projectDetailsContent"

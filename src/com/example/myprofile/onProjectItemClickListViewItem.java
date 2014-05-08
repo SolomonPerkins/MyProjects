@@ -31,16 +31,25 @@ public class onProjectItemClickListViewItem implements OnItemClickListener{
 		//Get the context from the view
 		Context context = view.getContext();
 		
+		//get the tag
+		String tag = ((TextView) view.findViewById(R.id.project_name)).getTag().toString();
+		
 		//get the project name
 		String project_name = ((TextView) view.findViewById(R.id.project_name)).getText().toString();
 	
-		//get the tag
-		String project_description = ((TextView) view.findViewById(R.id.project_description)).getText().toString();
+		//set the introduction from the details view
+		String project_introduction = ((TextView) view.findViewById(R.id.project_description)).getText().toString();
 		
-		Toast.makeText(context, "Click view: "+ project_name+" Project_id: "+ project_description, Toast.LENGTH_LONG)
+		Toast.makeText(context, "Click view: "+ project_name+" Project_id: "+ project_introduction+" Tag "+tag, Toast.LENGTH_LONG)
 			.show();
 		
+		
+		//setup projects details
+		// the description is empty as it is not stored on the list view. Service call will be used to extract these data from external sources 
+		//and store them into liteSql for future references.
+		myDetailsFragment.setupDetails(tag,project_name, project_introduction, "");
 		myDetailsFragment.showDetailsView();
+		
 	}
 	
 	
