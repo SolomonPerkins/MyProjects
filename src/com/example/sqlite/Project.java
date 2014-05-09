@@ -13,7 +13,7 @@ public class Project {
 	private String image_url;
 	private String language;
 	private String project_description;
-	private Date project_date;
+	private String project_date;
 	
 	public long getId() {
 		return id;
@@ -45,10 +45,10 @@ public class Project {
 	public void setProject_description(String project_description) {
 		this.project_description = project_description;
 	}
-	public Date getProject_date() {
+	public String getProject_date() {
 		return project_date;
 	}
-	public void setProject_date(Date project_date) {
+	public void setProject_date(String project_date) {
 		this.project_date = project_date;
 	}	
 	

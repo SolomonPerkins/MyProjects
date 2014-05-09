@@ -1,17 +1,16 @@
 package com.example.sqlite;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.format.DateFormat;
 import android.util.Log;
 
 /**
@@ -49,19 +48,20 @@ public class ProjectsDao {
 		dbHelper.close();
 	}
 	
-	public Project createProject(String name, String description, String image_url, DateFormat date){
+	public Project createProject(String name, String description, String image_url, String language ,SimpleDateFormat date){
 		ContentValues values = new ContentValues();
 		
 		//Preparing values
 		values.put(ProjectsSQLite.PROJECT_NAME, name);
 		values.put(ProjectsSQLite.PROJECT_DESCRIPTION, description);
+		values.put(ProjectsSQLite.PROJECT_LANGUAGE, language);
 		values.put(ProjectsSQLite.PROJECT_IMAGE, image_url);
 		values.put(ProjectsSQLite.PROJECT_DATE, date.toString());
 		
 		//Insert values
 		long insertId = database.insert(ProjectsSQLite.TABLE_PROJECTS, null, values);
 		
-		//Use cursor to perfor data
+		//Store results returned in a cursor.
 		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECTS
 				, allColumns
 				, ProjectsSQLite.PROJECT_ID + " = " + insertId
@@ -72,22 +72,29 @@ public class ProjectsDao {
 		
 		//Store information about all populate data
 		Project newProject = cursorToProject(cursor);
-	
+		
 		//close connection
 		cursor.close();
 		
 		return newProject;
 	}
 	
+	/**
+	 * 
+	 * @param project
+	 */
 	public void deleteProject(Project project){
 		long id = project.getId();
 		
 		Log.w("Delete project", "Deleting project "+ project.getProject_name() +" id: "+ project.getId());
 		
-		if(id > 0){
+		if(id <= 0 ){
+			Log.w("Delete project", "unable to delete project with id : "+ id);
+		}else{
 			//delete the data
 			database.delete(ProjectsSQLite.TABLE_PROJECTS
 					, ProjectsSQLite.PROJECT_ID + " = " + id, null);
+			
 		}
 	}
 	
@@ -146,7 +153,8 @@ public class ProjectsDao {
 		project.setProject_description(cursor.getString(2));
 		project.setLanguage(cursor.getString(3));
 		project.setImage_url(cursor.getString(4));
-		project.setProject_date(processDate(cursor.getString(5)));
+		project.setProject_date("");
+//		project.setProject_date(processDate(cursor.getString(5)));
 		
 		return project;
 	}
@@ -156,13 +164,13 @@ public class ProjectsDao {
 	 * @param string_date
 	 * @return (sql)Date
 	 */
-	public Date processDate(String string_date){
+	public String processDate(String string_date){
 		try {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = (Date) format.parse(string_date);
 			
 			Log.w("Convert string to date", "Convert string ("+ string_date + ") to (date "+ date.toString() +")");		
-			return date;
+			return date.toString();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

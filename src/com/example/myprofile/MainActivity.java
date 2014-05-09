@@ -1,22 +1,26 @@
 package com.example.myprofile;
 
-import java.sql.Date;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+//Include SQLite funcationality
+import com.example.sqlite.Project;
+import com.example.sqlite.ProjectsDao;
+
 public class MainActivity extends ActionBarActivity {
+	
+	private ProjectsDao projectsDao;
 	
 	ListView projectsListView;
 	ListView slideShowListView;
@@ -35,7 +39,11 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		projectsDao = new ProjectsDao(this);
+		
+		
 		setUpDetailsView();
+		
 		//Loads the data
 		getProjectList();
 		
@@ -90,6 +98,18 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void getProjectList(){
 		
+		//Open the database
+		projectsDao.open();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = new Date();
+		
+		dateFormat.format(d);
+		projectsDao.createProject("Trial", "A basic description", "car.png", "", dateFormat);
+		
+		List<Project> projects = projectsDao.getAllProject("date", "DESC");
+		
+		
+		
 		ProjectItem[] projectItems = new ProjectItem[20];
 		Calendar calendar = Calendar.getInstance();
 		
@@ -119,8 +139,10 @@ public class MainActivity extends ActionBarActivity {
 		//Get ListView object
 		projectsListView = (ListView) findViewById(R.id.projects_list);
 		
+		
 		//Create the arrayadapter
-		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
+//		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
+		ArrayAdapter<Project>  adapter = new ArrayAdapter<Project>(this, R.layout.fragment_each_project, projects);
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	

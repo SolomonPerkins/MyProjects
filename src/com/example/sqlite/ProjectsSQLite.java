@@ -24,13 +24,13 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 	
 	//Create database
 	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_PROJECTS + "( " 
-			+ PROJECT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
-			+ ", " + PROJECT_NAME + " NVARCHAR(100) not null "
-			+ ", " + PROJECT_DESCRIPTION + " NVARCHAR(1000) DEFAULT ''"
-			+ ", " + PROJECT_LANGUAGE + " NVARCHAR(100) NOT NULL"
-			+ ", " + PROJECT_IMAGE + " NVARCHAR(100) NOT NULL DEFAULT "
-			+ ", " + PROJECT_DATE + "DATE"
+			+ TABLE_PROJECTS + " ( " 
+			+ PROJECT_ID + " INTEGER primary key autoincrement "
+			+ ", " + PROJECT_NAME + " text not null "
+			+ ", " + PROJECT_DESCRIPTION + " text "
+			+ ", " + PROJECT_LANGUAGE + " text not null "
+			+ ", " + PROJECT_IMAGE + " text not null DEFAULT \'default.png\'"
+			+ ", " + PROJECT_DATE + " numeric "
 			+ " );";
 			
 	
@@ -38,6 +38,9 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	
+	/**
+	 * Creates the list of table
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase database){
 		database.execSQL(DATABASE_CREATE);
