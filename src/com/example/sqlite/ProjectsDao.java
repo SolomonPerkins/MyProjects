@@ -153,8 +153,7 @@ public class ProjectsDao {
 		project.setProject_description(cursor.getString(2));
 		project.setLanguage(cursor.getString(3));
 		project.setImage_url(cursor.getString(4));
-		project.setProject_date("");
-//		project.setProject_date(processDate(cursor.getString(5)));
+		project.setProject_date(processDate(cursor.getString(5)));
 		
 		return project;
 	}
