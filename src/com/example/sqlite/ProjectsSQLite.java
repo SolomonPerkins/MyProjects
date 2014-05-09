@@ -8,18 +8,30 @@ import android.util.Log;
 public class ProjectsSQLite extends SQLiteOpenHelper{
 	
 	public static final String TABLE_PROJECTS = "Projects";
-	public static final String COLUMN_ID = "_id";
-	public static final String	COLUMN_COMMENT = "Store the list of projects";
+	public static final String  PROJECT_ID = "id";
+	public static final String	PROJECT_NAME = "name";
+	public static final String	PROJECT_DESCRIPTION = "description";
+	public static final String	PROJECT_IMAGE = "image_url";
+	public static final String	PROJECT_LANGUAGE = "language";	//the programming language used
+	public static final String	PROJECT_DATE = "date";
+	
+	//The default image URL
+	public static final String DEFAULT_IMAGE_URL = "default.png";
+	
 	
 	public static final String DATABASE_NAME = "projects.db";
 	public static final int DATABASE_VERSION = 1;
 	
 	//Create database
 	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_PROJECTS + "(" 
-			+ COLUMN_ID
-			+ " integer primary key autoincrement, " + COLUMN_COMMENT
-			+ " text not null;";
+			+ TABLE_PROJECTS + "( " 
+			+ PROJECT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
+			+ ", " + PROJECT_NAME + " NVARCHAR(100) not null "
+			+ ", " + PROJECT_DESCRIPTION + " NVARCHAR(1000) DEFAULT ''"
+			+ ", " + PROJECT_LANGUAGE + " NVARCHAR(100) NOT NULL"
+			+ ", " + PROJECT_IMAGE + " NVARCHAR(100) NOT NULL DEFAULT "
+			+ ", " + PROJECT_DATE + "DATE"
+			+ " );";
 			
 	
 	public ProjectsSQLite(Context context){
