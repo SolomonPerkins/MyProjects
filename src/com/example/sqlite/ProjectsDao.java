@@ -13,6 +13,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.myprofile.models.Project;
+
 /**
  * This is the Data source class. It maintains database connection, adding new projects and fetching a list of project
  * @author alexforce
@@ -25,11 +27,8 @@ public class ProjectsDao {
 	private String[] allColumns = {
 			ProjectsSQLite.PROJECT_ID
 		 ,	ProjectsSQLite.PROJECT_NAME
-		 ,	ProjectsSQLite.PROJECT_DESCRIPTION
-		 ,  ProjectsSQLite.PROJECT_LANGUAGE
-		 ,  ProjectsSQLite.PROJECT_IMAGE
 		 ,  ProjectsSQLite.PROJECT_DATE
-	
+		 , 	ProjectsSQLite.PROJECT_INTRODUCTION
 	};
 	
 	public ProjectsDao(Context context){
@@ -48,15 +47,13 @@ public class ProjectsDao {
 		dbHelper.close();
 	}
 	
-	public Project createProject(String name, String description, String image_url, String language ,SimpleDateFormat date){
+	public Project createProject(String name, String projectDate, String introduction){
 		ContentValues values = new ContentValues();
 		
 		//Preparing values
 		values.put(ProjectsSQLite.PROJECT_NAME, name);
-		values.put(ProjectsSQLite.PROJECT_DESCRIPTION, description);
-		values.put(ProjectsSQLite.PROJECT_LANGUAGE, language);
-		values.put(ProjectsSQLite.PROJECT_IMAGE, image_url);
-		values.put(ProjectsSQLite.PROJECT_DATE, date.toString());
+		values.put(ProjectsSQLite.PROJECT_DATE, projectDate);
+		values.put(ProjectsSQLite.PROJECT_INTRODUCTION, introduction);
 		
 		//Insert values
 		long insertId = database.insert(ProjectsSQLite.TABLE_PROJECTS, null, values);
@@ -70,7 +67,7 @@ public class ProjectsDao {
 		//Return to the first element in the list
 		cursor.moveToFirst();
 		
-		//Store information about all populate data
+		//Store information about the project created
 		Project newProject = cursorToProject(cursor);
 		
 		//close connection
@@ -150,9 +147,6 @@ public class ProjectsDao {
 		Project project = new Project();
 		project.setId(cursor.getLong(0));
 		project.setProject_name(cursor.getString(1));
-		project.setProject_description(cursor.getString(2));
-		project.setLanguage(cursor.getString(3));
-		project.setImage_url(cursor.getString(4));
 		project.setProject_date(processDate(cursor.getString(5)));
 		
 		return project;
@@ -163,17 +157,25 @@ public class ProjectsDao {
 	 * @param string_date
 	 * @return (sql)Date
 	 */
-	public String processDate(String string_date){
-		try {
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = (Date) format.parse(string_date);
+	public Date processDate(String string_date){
+			//TODO: string date should be converted to Date format
 			
-			Log.w("Convert string to date", "Convert string ("+ string_date + ") to (date "+ date.toString() +")");		
-			return date.toString();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				Date date;
+				
+				date = (Date) format.parse(string_date);
+				
+				Log.w("Convert string to date", "Convert string ("+ string_date + ") to (date "+ date.toString() +")");		
+				return date;
+
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+				return null;
+			}
+						
+		
 	}
 }
