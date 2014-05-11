@@ -1,9 +1,11 @@
-package com.example.sqlite;
+package com.example.myprofile.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.myprofile.utils.DatabaseUtils;
 
 public class ProjectsSQLite extends SQLiteOpenHelper{
 	
@@ -14,11 +16,12 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 	public static final String	PROJECT_INTRODUCTION = "introduction";
 	public static final String	PROJECT_DATE = "date";
 	
-		
-	public static final String DATABASE_NAME = "projects.db";
-	public static final int DATABASE_VERSION = 1;
+	static DatabaseUtils dbUtils = new DatabaseUtils();
 	
-	//Create database
+	public static final String DATABASE_NAME = dbUtils.getDatabase_name();
+	public static final int DATABASE_VERSION = dbUtils.getDatabase_version();
+	
+	//Create projects table
 	private static final String CREATE_PROJECTS_TABLE = "create table "
 			+ TABLE_PROJECTS + " ( " 
 			+ PROJECT_ID + " INTEGER primary key autoincrement "
@@ -51,6 +54,10 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 		
 		onCreate(database);
 	}
-	
+
+	@Override
+	public void onOpen(SQLiteDatabase database){
+		Log.w(ProjectsSQLite.class.getName(), "Opening database " + DATABASE_NAME);
+	}
 	
 }

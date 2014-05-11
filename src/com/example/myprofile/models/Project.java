@@ -1,5 +1,7 @@
 package com.example.myprofile.models;
 
+import java.sql.Date;
+
 
 /**
  * This the model which will be used to interact with the project table (database) and show in the user interface
@@ -10,7 +12,7 @@ public class Project {
 	private long id;
 	private String project_name;
 	private String project_introduction;
-	private String project_date;
+	private Date project_date;
 	
 	
 	public long getId() {
@@ -19,22 +21,23 @@ public class Project {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getProject_name() {
+	public String getProjectName() {
 		return project_name;
 	}
-	public void setProject_name(String project_name) {
+	public void setProjectName(String project_name) {
 		this.project_name = project_name;
 	}
-	public String getProject_introduction() {
+	public String getProjectIntroduction() {
 		return project_introduction;
 	}
-	public void setProject_introduction(String project_introduction) {
+	public void setProjectIntroduction(String project_introduction) {
 		this.project_introduction = project_introduction;
 	}
-	public String getProject_date() {
+	public Date getProjectDate() {
 		return project_date;
 	}
-	public void setProject_date(String project_date) {
+	
+	public void setProjectDate(Date project_date) {
 		this.project_date = project_date;
 	}
 	

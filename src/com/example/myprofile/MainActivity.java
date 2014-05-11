@@ -15,12 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 //Include SQLite funcationality
-import com.example.sqlite.Project;
-import com.example.sqlite.ProjectsDao;
+
+
+import android.widget.Toast;
+
+import com.example.myprofile.models.Project;
+import com.example.myprofile.sqlite.ProjectsDao;
+//include basic date utils functions
+import com.example.myprofile.utils.DateUtils;
 
 public class MainActivity extends ActionBarActivity {
 	
 	private ProjectsDao projectsDao;
+	private DateUtils dateUtils = new DateUtils();
 	
 	ListView projectsListView;
 	ListView slideShowListView;
@@ -100,42 +107,12 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Open the database
 		projectsDao.open();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date d = new Date();
+		Date date = new Date();
 		
-		dateFormat.format(d);
-		projectsDao.createProject("Trial", "A basic description", "car.png", "", dateFormat);
-		
+//		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
 		List<Project> projects = projectsDao.getAllProject("date", "DESC");
-		
-		
-		
-		ProjectItem[] projectItems = new ProjectItem[20];
-		Calendar calendar = Calendar.getInstance();
-		
-		String today = "/Apr 5,2014";
-		
-		projectItems[0] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[1] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[2] = new ProjectItem(1, "Body Mass Index", today, "Some extra stuff", R.drawable.java);
-		projectItems[3] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[4] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[5] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[6] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[7] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[8] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[9] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[10] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[11] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[12] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[13] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[14] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[15] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[16] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[17] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[18] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[19] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		
+		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG);
+	
 		//Get ListView object
 		projectsListView = (ListView) findViewById(R.id.projects_list);
 		

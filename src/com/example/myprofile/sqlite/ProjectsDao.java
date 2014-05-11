@@ -1,4 +1,4 @@
-package com.example.sqlite;
+package com.example.myprofile.sqlite;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -83,7 +83,7 @@ public class ProjectsDao {
 	public void deleteProject(Project project){
 		long id = project.getId();
 		
-		Log.w("Delete project", "Deleting project "+ project.getProject_name() +" id: "+ project.getId());
+		Log.w("Delete project", "Deleting project "+ project.getProjectName() +" id: "+ project.getId());
 		
 		if(id <= 0 ){
 			Log.w("Delete project", "unable to delete project with id : "+ id);
@@ -146,8 +146,8 @@ public class ProjectsDao {
 	private Project cursorToProject(Cursor cursor){
 		Project project = new Project();
 		project.setId(cursor.getLong(0));
-		project.setProject_name(cursor.getString(1));
-		project.setProject_date(processDate(cursor.getString(5)));
+		project.setProjectName(cursor.getString(1));
+		project.setProjectDate(processDate(cursor.getString(3)));
 		
 		return project;
 	}
