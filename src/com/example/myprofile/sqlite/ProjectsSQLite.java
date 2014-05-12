@@ -11,36 +11,11 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 	
 	//Projects TABLE Columns
 	public static final String TABLE_PROJECTS = "Projects";
-	public static final String  PROJECT_ID = "id";
+	public static final String  PROJECT_ID = "_id";
 	public static final String	PROJECT_NAME = "name";
 	public static final String	PROJECT_INTRODUCTION = "introduction";
 	public static final String	PROJECT_DATE = "date";
-	
-	//ProjectDetails Table Columns
-	public static final String TABLE_PROJECT_DETAILS = "ProjectDetails";
-	public static final String  PROJECT_DETAILS_ID = "id";
-	public static final String  PROJECT_DETAILS_PROJECT_ID = "project_id";	//reference the project
-	public static final String  PROJECT_DETAILS_DESCRIPTION = "description";
-	public static final String  PROJECT_DETAILS_DIFFICULTY = "difficulty";
-
-	//Language Table Columns
-	public static final String TABLE_LANGUAGE = "Language";
-	public static final String LANGUAGE_ID = "id";
-	public static final String LANGUAGE_PROJECT_ID = "project_id";	//reference the project
-	public static final String LANGUAGE_NAME = "name";
-	public static final String LANGUAGE_REFERENCE = "langauge_reference"; //Url to a wiki page about the language
-	public static final String LANGUAGE_IMAGE_URL = "image_url";	//The language icon.
-	
-	//Project Images Table Columns
-	public static final String TABLE_PROJECT_IMAGE = "ProjectImages";
-	public static final String PROJECT_IMAGE_ID = "id";
-	public static final String PROJECT_IMAGE_PROJECT_ID = "project_id";
-	public static final String PROJECT_IMAGE_IS_MAIN_IMAGE = "is_main_image";
-	public static final String PROJECT_IMAGE_URL = "url";
-	public static final String PROJECT_IMAGE_META = "meta";	//A short sentence of what the image is about
-	
-	
-	//Biographic 
+		
 	
 	static DatabaseUtils dbUtils = new DatabaseUtils();
 	
@@ -56,37 +31,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 			+ ", " + PROJECT_DATE + " DATE "
 			+ " );";
 	
-	//Create Project details table
-	public static final String CREATE_PROJECT_DETAILS_TABLE = "create table "
-			+ TABLE_PROJECT_DETAILS + " ( "
-			+ ", " + PROJECT_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
-			+ ", " + PROJECT_DETAILS_PROJECT_ID + " INTEGER NOT NULL "
-			+ ", " + PROJECT_DETAILS_DESCRIPTION + " NVARCHAR(1000) "
-			+ ", " + PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
-			+ ", FOREIGN KEY (" + PROJECT_DETAILS_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID +")"
-			+ " );";
-			
-	//Create Language table
-	public static final String CREATE_LANGUAGE_TABLE = "create table "
-				+ TABLE_LANGUAGE + " ( "
-				+ ", " + LANGUAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
-				+ ", " + LANGUAGE_PROJECT_ID + " INTEGER NOT NULL "
-				+ ", " + LANGUAGE_NAME + " NVARCHAR(20) NOT NULL"
-				+ ", " + LANGUAGE_REFERENCE + " NVARCHAR(30) NULL DEFAULT '' "
-				+ ", FOREIGN KEY (" + LANGUAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID +")"
-				+ " );";
-
-	//Create Image table
-	public static final String CREATE_IMAGE_TABLE = "create table "
-					+ TABLE_PROJECT_IMAGE + " ( "
-					+ ", " + PROJECT_IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
-					+ ", " + PROJECT_IMAGE_PROJECT_ID + " INTEGER NOT NULL "
-					+ ", " + PROJECT_IMAGE_IS_MAIN_IMAGE + " Boolean DEFAULT 0"
-					+ ", " + PROJECT_IMAGE_URL + " NVARCHAR(30) NULL DEFAULT 'default.png' "
-					+ ", FOREIGN KEY (" + PROJECT_IMAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID +")"
-					+ " );";
-	
-			
+				
 	public ProjectsSQLite(Context context){
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -97,9 +42,6 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase database){
 		database.execSQL(CREATE_PROJECTS_TABLE);
-		database.execSQL(CREATE_PROJECT_DETAILS_TABLE);
-		database.execSQL(CREATE_LANGUAGE_TABLE);
-		database.execSQL(CREATE_LANGUAGE_TABLE);
 
 	}
 	
@@ -113,9 +55,6 @@ public class ProjectsSQLite extends SQLiteOpenHelper{
 				+ " to " + newVersion + ", which will destroy all old data");
 		
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECTS);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_DETAILS);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGE);
-		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_IMAGE);
 
 		onCreate(database);
 	}

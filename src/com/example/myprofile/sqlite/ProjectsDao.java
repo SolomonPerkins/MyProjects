@@ -31,6 +31,15 @@ public class ProjectsDao {
 		 , 	ProjectsSQLite.PROJECT_INTRODUCTION
 	};
 	
+	// Links the Project -> Language
+	//					 -> Project_Details
+	//					 -> Project_Images
+	private String getProjectsListQuery = "SELECT "
+			+ " P.id, P.date, P.introduction"
+			+ " "
+			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P"
+			+ " LEFT JOIN ";
+	
 	public ProjectsDao(Context context){
 		dbHelper = new ProjectsSQLite(context);
 	}
@@ -118,9 +127,11 @@ public class ProjectsDao {
 			
 		}
 		
+		//TODO: Use rawQuery instead
 		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECTS
 				, allColumns
 				, null, null, null, null, orderByColumn + " " + order);
+		
 		
 		cursor.moveToFirst();
 		//Loop through all data

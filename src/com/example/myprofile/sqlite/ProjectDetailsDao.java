@@ -24,9 +24,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 	
 	
 	public ProjectDetailsDao(Context context){
-
 		dbHelper = new ProjectDetailsSQLite(context);
-	
 	}
 	
 	

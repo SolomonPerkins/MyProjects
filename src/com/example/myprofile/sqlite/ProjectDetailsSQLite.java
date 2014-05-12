@@ -11,7 +11,7 @@ public class ProjectDetailsSQLite extends SQLiteOpenHelper{
 	
 	//ProjectDetails Table
 	public static final String TABLE_PROJECT_DETAILS = "ProjectDetails";
-	public static final String  PROJECT_DETAILS_ID = "id";
+	public static final String  PROJECT_DETAILS_ID = "_id";
 	public static final String  PROJECT_DETAILS_PROJECT_ID = "project_id";	//reference the project
 	public static final String  PROJECT_DETAILS_DESCRIPTION = "description";
 	public static final String  PROJECT_DETAILS_DIFFICULTY = "difficulty";
@@ -27,10 +27,9 @@ public class ProjectDetailsSQLite extends SQLiteOpenHelper{
 			+ ", " + PROJECT_DETAILS_PROJECT_ID + " INTEGER NOT NULL "
 			+ ", " + PROJECT_DETAILS_DESCRIPTION + " NVARCHAR(1000) "
 			+ ", " + PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
-			+ ", FOREIGN KEY (" + PROJECT_DETAILS_PROJECT_ID + ") REFERENCES Projects(id)"
+			+ ", FOREIGN KEY (" + PROJECT_DETAILS_PROJECT_ID + ") REFERENCES Projects(_id)"
 			+ " );";
 			
-	
 	
 	public ProjectDetailsSQLite(Context context){
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,5 +56,4 @@ public class ProjectDetailsSQLite extends SQLiteOpenHelper{
 		Log.w(ProjectsSQLite.class.getName(), "Opening database " + DATABASE_NAME);
 	}
 
-	
 }
