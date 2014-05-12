@@ -201,7 +201,7 @@ public class ProjectsDao {
 		Language language = new Language();	//should get the language details
 		ProjectImage image = new ProjectImage();	// should get the image details
 		
-		
+		//populating each model
 		listViewItem.setProject(project);
 		listViewItem.setLanguage(language);
 		listViewItem.setProjectImage(image);
