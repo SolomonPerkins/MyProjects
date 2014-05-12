@@ -13,7 +13,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.myprofile.models.Language;
 import com.example.myprofile.models.Project;
+import com.example.myprofile.models.ProjectImage;
+import com.example.myprofile.models.ProjectListView;
 
 /**
  * This is the Data source class. It maintains database connection, adding new projects and fetching a list of project
@@ -32,8 +35,7 @@ public class ProjectsDao {
 	};
 	
 	// Links the Project -> Language
-	//					 -> Project_Details
-	//					 -> Project_Images
+	//					 -> ProjectImages
 	private String getProjectsListQuery = "SELECT "
 			+ " P."+ ProjectsSQLite.PROJECT_ID + " AS project_id , P."
 				+ ProjectsSQLite.PROJECT_DATE +" AS project_date, P."
@@ -46,7 +48,7 @@ public class ProjectsDao {
 				+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, PI."
 				+ ProjectsSQLite.PROJECT_IMAGE_META + " AS meta"
 			
-			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P"
+			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P" //Project
 			+ " LEFT JOIN " + ProjectsSQLite.TABLE_LANGUAGE + " AS PL "	//Join Language
 				+ " ON PL." + ProjectsSQLite.LANGUAGE_PROJECT_ID + "=P."+ProjectsSQLite.PROJECT_ID
 			
@@ -126,10 +128,11 @@ public class ProjectsDao {
 	 *  projects can be ordered using the column name and the orderby clause.
 	 * @param String orderBy Column eg: date
 	 * @param String order ASC or DESC
+	 * @return List < {@link Project} >
 	 */
 	
-	public List<Project> getAllProject(String orderByColumn,String order){
-		List<Project> projects = new ArrayList<Project>();
+	public List<ProjectListView> getAllProject(String orderByColumn,String order){
+		List<ProjectListView> projects = new ArrayList<ProjectListView>();
 	
 		String[] ordersList = { "ASC", "DESC"};
 		String orderByClause = null;
@@ -154,12 +157,15 @@ public class ProjectsDao {
 		cursor.moveToFirst();
 		//Loop through all data
 		while(!cursor.isAfterLast()){
-			Project project = cursorToProject(cursor);
+			ProjectListView project = cursorToProjectListView(cursor);
 			projects.add(project);
 			
 			//move to the next row
 			cursor.moveToNext();
 		}
+		
+		Log.w("getAllProjects ", "Returning " + projects.size() + "projects");
+		
 		
 		cursor.close();
 		
@@ -175,11 +181,33 @@ public class ProjectsDao {
 	 */
 	private Project cursorToProject(Cursor cursor){
 		Project project = new Project();
+		
 		project.setId(cursor.getLong(0));
 		project.setProjectName(cursor.getString(1));
 		project.setProjectDate(processDate(cursor.getString(3)));
 		
 		return project;
+	}
+	
+	/**
+	 * Will populate all the model data for each component on the list view
+	 * @param cursor
+	 * @return
+	 */
+	private ProjectListView cursorToProjectListView(Cursor cursor){
+		ProjectListView listViewItem = new ProjectListView();
+		
+		Project project = cursorToProject(cursor);
+		Language language = new Language();	//should get the language details
+		ProjectImage image = new ProjectImage();	// should get the image details
+		
+		
+		listViewItem.setProject(project);
+		listViewItem.setLanguage(language);
+		listViewItem.setProjectImage(image);
+		
+		return listViewItem;
+		
 	}
 	
 	/**
