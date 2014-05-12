@@ -12,7 +12,7 @@ import android.util.Log;
 public class ProjectDetailsDao extends BasicCRUD{
 
 	private SQLiteDatabase database;
-	private ProjectDetailsSQLite dbHelper;
+	private ProjectsSQLite dbHelper;
 	private String[] allColumns = {
 			ProjectDetailsSQLite.PROJECT_DETAILS_ID
 		,	ProjectDetailsSQLite.PROJECT_DETAILS_PROJECT_ID
@@ -24,7 +24,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 	
 	
 	public ProjectDetailsDao(Context context){
-		dbHelper = new ProjectDetailsSQLite(context);
+		dbHelper = new ProjectsSQLite(context);
 	}
 	
 	
@@ -39,6 +39,13 @@ public class ProjectDetailsDao extends BasicCRUD{
 		database.close();
 	}
 	
+	/**
+	 * 
+	 * @param projectID
+	 * @param description
+	 * @param difficulty
+	 * @return {@link ProjectDetails}
+	 */
 	public ProjectDetails createProjectDetails(int projectID, String description, String difficulty){
 		ContentValues values = new ContentValues();
 		
@@ -71,6 +78,10 @@ public class ProjectDetailsDao extends BasicCRUD{
 		
 	}
 	
+	/**
+	 * 
+	 * @param projectDetails
+	 */
 	public void deleteProjectDetails(ProjectDetails projectDetails){
 		long id = projectDetails.getId();
 		
@@ -85,6 +96,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 			
 		}
 	}
+	
 	
 	public ProjectDetails cursorToProjectDetails(Cursor cursor){
 		

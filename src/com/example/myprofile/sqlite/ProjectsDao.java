@@ -35,10 +35,27 @@ public class ProjectsDao {
 	//					 -> Project_Details
 	//					 -> Project_Images
 	private String getProjectsListQuery = "SELECT "
-			+ " P.id, P.date, P.introduction"
-			+ " "
+			+ " P."+ ProjectsSQLite.PROJECT_ID + " AS project_id , P."
+				+ ProjectsSQLite.PROJECT_DATE +" AS project_date, P."
+				+ ProjectsSQLite.PROJECT_INTRODUCTION + " AS introduction"
+			+ " PL."+ProjectsSQLite.LANGUAGE_ID + " AS language_id, PL." 
+				+ ProjectsSQLite.LANGUAGE_NAME + "AS language_name, PL." 
+				+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image"
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, PI."
+				+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, PI."
+				+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, PI."
+				+ ProjectsSQLite.PROJECT_IMAGE_META + " AS meta"
+			
 			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P"
-			+ " LEFT JOIN ";
+			+ " LEFT JOIN " + ProjectsSQLite.TABLE_LANGUAGE + " AS PL "	//Join Language
+				+ " ON PL." + ProjectsSQLite.LANGUAGE_PROJECT_ID + "=P."+ProjectsSQLite.PROJECT_ID
+			
+			+ " LEFT JOIN "+ ProjectsSQLite.TABLE_PROJECT_IMAGE	+ " AS PI"//Join project image
+				+ " ON PI." + ProjectsSQLite.PROJECT_IMAGE_PROJECT_ID + "= P." + ProjectsSQLite.PROJECT_ID
+				+ " AND PI."+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE  + " = 1"	//the main image to be displayed on the list view
+		
+			+ " ORDER BY P."+ ProjectsSQLite.PROJECT_DATE + " DESC ";
+	
 	
 	public ProjectsDao(Context context){
 		dbHelper = new ProjectsSQLite(context);
@@ -128,10 +145,11 @@ public class ProjectsDao {
 		}
 		
 		//TODO: Use rawQuery instead
-		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECTS
-				, allColumns
-				, null, null, null, null, orderByColumn + " " + order);
+//		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECTS
+//				, allColumns
+//				, null, null, null, null, orderByColumn + " " + order);
 		
+		Cursor cursor = database.rawQuery(getProjectsListQuery, null);
 		
 		cursor.moveToFirst();
 		//Loop through all data
@@ -147,6 +165,7 @@ public class ProjectsDao {
 		
 		return projects;
 	}
+	
 	
 	
 	/**
