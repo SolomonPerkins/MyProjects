@@ -7,6 +7,18 @@ public class ProjectImage {
 	private String project_image_url;
 	private String project_meta;	//basic details about the project
 	
+	public ProjectImage(){
+		
+	}
+	
+	public ProjectImage(long id, long project_id, Boolean is_main_image, String project_image_url, String project_meta){
+		this.id = id;
+		this.project_id = project_id;
+		this.is_main_image = is_main_image;
+		this.project_image_url = project_image_url;
+		this.project_meta = project_meta;
+	}
+	
 	/**
 	 * @return the id
 	 */

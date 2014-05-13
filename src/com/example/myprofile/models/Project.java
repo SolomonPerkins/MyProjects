@@ -15,6 +15,16 @@ public class Project {
 	private Date project_date;
 	
 	
+	public Project(){
+		
+	}
+	public Project(long id, String project_name, String project_introduction, Date project_date){
+		this.id = id;
+		this.project_name = project_name;
+		this.project_introduction = project_introduction;
+		this.project_date = project_date;
+	}
+	
 	public long getId() {
 		return id;
 	}

@@ -7,6 +7,17 @@ public class Language {
 	private String language_reference;
 	private String language_image_url;
 	
+	
+	public Language(){
+		
+	}
+	public Language(long id, long project_id, String language_name, String langugage_reference, String language_image_url){
+		this.id = id;
+		this.project_id = project_id;
+		this.language_name = language_name;
+		this.language_image_url = language_image_url;
+		this.language_reference = langugage_reference;
+	}
 	/**
 	 * @return the id
 	 */
