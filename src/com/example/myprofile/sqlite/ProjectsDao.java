@@ -17,6 +17,7 @@ import com.example.myprofile.models.Language;
 import com.example.myprofile.models.Project;
 import com.example.myprofile.models.ProjectImage;
 import com.example.myprofile.models.ProjectListView;
+import com.example.myprofile.utils.DatabaseUtils;
 
 /**
  * This is the Data source class. It maintains database connection, adding new projects and fetching a list of project
@@ -33,6 +34,8 @@ public class ProjectsDao {
 		 ,  ProjectsSQLite.PROJECT_DATE
 		 , 	ProjectsSQLite.PROJECT_INTRODUCTION
 	};
+	
+	private DatabaseUtils dbUtils = new DatabaseUtils();
 	
 	// Links the Project -> Language
 	//					 -> ProjectImages
@@ -208,7 +211,7 @@ public class ProjectsDao {
 	private ProjectImage cursorToImage(Cursor cursor){
 		ProjectImage image = new ProjectImage();
 		image.setId(cursor.getLong(7));
-		image.setMainImage(cursor.getInt(8) == 1 );
+		image.setMainImage(dbUtils.getBoolean(cursor, 8));
 		image.setProjectImageUrl(cursor.getString(9));
 		image.setProjectMeta(cursor.getString(10));
 	

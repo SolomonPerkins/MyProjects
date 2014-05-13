@@ -1,5 +1,7 @@
 package com.example.myprofile.utils;
 
+import android.database.Cursor;
+
 public class DatabaseUtils {
 	private  String database_name;
 	private int database_version;
@@ -37,5 +39,19 @@ public class DatabaseUtils {
 		this.database_version = database_version;
 	}
 	
+	
+	/**
+	 * Return the boolean form a cursor list. 
+	 * @param cursor
+	 * @param columnIndex
+	 * @return
+	 */
+	public Boolean getBoolean(Cursor cursor,int columnIndex){
+		if(cursor.isNull(columnIndex) || cursor.getInt(columnIndex) == 0){
+			return false;
+		} else{
+			return true;
+		}
+	}
 	
 }
