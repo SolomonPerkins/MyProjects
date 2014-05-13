@@ -57,16 +57,15 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 	// Create projects table
 	private static final String CREATE_PROJECTS_TABLE = "create table "
-			+ TABLE_PROJECTS + " ( " + PROJECT_ID
-			+ " INTEGER primary key autoincrement " + ", " + PROJECT_NAME
-			+ " NVARCHAR(500) not null " + ", " + PROJECT_INTRODUCTION
-			+ " NVARCHAR(200) NOT NULL " + ", " + PROJECT_DATE + " DATE "
+			+ TABLE_PROJECTS + " ( " + PROJECT_ID + " INTEGER primary key autoincrement " 
+			+ ", " + PROJECT_NAME + " NVARCHAR(500) not null " 
+			+ ", " + PROJECT_INTRODUCTION + " NVARCHAR(200) NOT NULL " 
+			+ ", " + PROJECT_DATE + " DATE "
 			+ " );";
 
 	// Create Project details table
 	public static final String CREATE_PROJECT_DETAILS_TABLE = "create table "
-			+ TABLE_PROJECT_DETAILS + " ( " + ", " + PROJECT_DETAILS_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
+			+ TABLE_PROJECT_DETAILS + " ( " + ", " + PROJECT_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
 			+ PROJECT_DETAILS_PROJECT_ID + " INTEGER NOT NULL " + ", "
 			+ PROJECT_DETAILS_DESCRIPTION + " NVARCHAR(1000) " + ", "
 			+ PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
@@ -75,18 +74,16 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 	// Create Language table
 	public static final String CREATE_LANGUAGE_TABLE = "create table "
-			+ TABLE_LANGUAGE + " ( " + ", " + LANGUAGE_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
-			+ LANGUAGE_PROJECT_ID + " INTEGER NOT NULL " + ", " + LANGUAGE_NAME
-			+ " NVARCHAR(20) NOT NULL" + ", " + LANGUAGE_REFERENCE
-			+ " NVARCHAR(30) NULL DEFAULT '' " 
+			+ TABLE_LANGUAGE + " ( " + ", " + LANGUAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
+			+ LANGUAGE_PROJECT_ID + " INTEGER NOT NULL " 
+			+ ", " + LANGUAGE_NAME + " NVARCHAR(20) NOT NULL" 
+			+ ", " + LANGUAGE_REFERENCE + " NVARCHAR(30) NULL DEFAULT '' " 
 			+ ", FOREIGN KEY (" + LANGUAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")"
 			+ " );";
 
 	// Create Image table
 	public static final String CREATE_IMAGE_TABLE = "create table "
-			+ TABLE_PROJECT_IMAGE + " ( " + ", " + PROJECT_IMAGE_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
+			+ TABLE_PROJECT_IMAGE + " ( " + ", " + PROJECT_IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
 			+ PROJECT_IMAGE_PROJECT_ID + " INTEGER NOT NULL " + ", "
 			+ PROJECT_IMAGE_IS_MAIN_IMAGE + " Boolean DEFAULT 0" + ", "
 			+ PROJECT_IMAGE_URL + " NVARCHAR(30) NULL DEFAULT 'default.png' "

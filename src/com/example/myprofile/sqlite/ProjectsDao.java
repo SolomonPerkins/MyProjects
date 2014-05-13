@@ -38,15 +38,16 @@ public class ProjectsDao {
 	//					 -> ProjectImages
 	private String getProjectsListQuery = "SELECT "
 			+ " P."+ ProjectsSQLite.PROJECT_ID + " AS project_id , P."
+				+ ProjectsSQLite.PROJECT_NAME +" AS project_name, P."
 				+ ProjectsSQLite.PROJECT_DATE +" AS project_date, P."
-				+ ProjectsSQLite.PROJECT_INTRODUCTION + " AS introduction"
+				+ ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction"
 			+ " PL."+ProjectsSQLite.LANGUAGE_ID + " AS language_id, PL." 
 				+ ProjectsSQLite.LANGUAGE_NAME + "AS language_name, PL." 
 				+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image"
 			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, PI."
 				+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, PI."
 				+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, PI."
-				+ ProjectsSQLite.PROJECT_IMAGE_META + " AS meta"
+				+ ProjectsSQLite.PROJECT_IMAGE_META + " AS image_meta"
 			
 			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P" //Project
 			+ " LEFT JOIN " + ProjectsSQLite.TABLE_LANGUAGE + " AS PL "	//Join Language
@@ -184,9 +185,34 @@ public class ProjectsDao {
 		
 		project.setId(cursor.getLong(0));
 		project.setProjectName(cursor.getString(1));
-		project.setProjectDate(processDate(cursor.getString(3)));
+		project.setProjectDate(processDate(cursor.getString(2)));
+		project.setProjectIntroduction(cursor.getString(3));
 		
 		return project;
+	}
+	
+	/**
+	 * Maps Data to object for {@link Language}
+	 * @param cursor
+	 * @return
+	 */
+	private Language cursorToLanguage(Cursor cursor){
+		Language language = new Language();
+		language.setId(cursor.getLong(4));	//language_id;
+		language.setLanguage_name(cursor.getString(5));
+		language.setLanguage_image_url(cursor.getString(6));
+		
+		return language;
+	}
+	
+	private ProjectImage cursorToImage(Cursor cursor){
+		ProjectImage image = new ProjectImage();
+		image.setId(cursor.getLong(7));
+		image.setMainImage(cursor.getInt(8) == 1 );
+		image.setProjectImageUrl(cursor.getString(9));
+		image.setProjectMeta(cursor.getString(10));
+	
+		return image;
 	}
 	
 	/**
@@ -198,8 +224,8 @@ public class ProjectsDao {
 		ProjectListView listViewItem = new ProjectListView();
 		
 		Project project = cursorToProject(cursor);
-		Language language = new Language();	//should get the language details
-		ProjectImage image = new ProjectImage();	// should get the image details
+		Language language = cursorToLanguage(cursor);	//should get the language details
+		ProjectImage image = cursorToImage(cursor);	// should get the image details
 		
 		//populating each model
 		listViewItem.setProject(project);
