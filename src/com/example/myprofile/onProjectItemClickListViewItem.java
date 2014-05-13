@@ -38,7 +38,7 @@ public class onProjectItemClickListViewItem implements OnItemClickListener{
 		String project_name = ((TextView) view.findViewById(R.id.project_name)).getText().toString();
 	
 		//set the introduction from the details view
-		String project_introduction = ((TextView) view.findViewById(R.id.project_description)).getText().toString();
+		String project_introduction = ((TextView) view.findViewById(R.id.project_introduction)).getText().toString();
 		
 		Toast.makeText(context, "Click view: "+ project_name+" Project_id: "+ project_introduction+" Tag "+tag, Toast.LENGTH_LONG)
 			.show();

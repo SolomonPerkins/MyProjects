@@ -45,7 +45,7 @@
         android:textSize="16sp"/>
 
     <TextView 
-        android:id="@+id/project_description"
+        android:id="@+id/project_introduction"
         android:layout_width="fill_parent"
         android:layout_height="26dip"
         android:layout_alignParentBottom="true"

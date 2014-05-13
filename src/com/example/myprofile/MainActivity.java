@@ -2,6 +2,7 @@ package com.example.myprofile;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myprofile.models.Project;
+import com.example.myprofile.models.ProjectListView;
 import com.example.myprofile.sqlite.ProjectsDao;
 //include basic date utils functions
 import com.example.myprofile.utils.DateUtils;
@@ -110,7 +112,7 @@ public class MainActivity extends ActionBarActivity {
 		Date date = new Date();
 		
 //		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
-		List<Project> projects = projectsDao.getAllProject("date", "DESC");
+		List<ProjectListView> projects = new ArrayList<ProjectListView>();//= projectsDao.getAllProject("date", "DESC");
 		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG);
 	
 		//Get ListView object
@@ -119,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Create the arrayadapter
 //		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
-		ArrayAdapter<Project>  adapter = new ArrayAdapter<Project>(this, R.layout.fragment_each_project, projects);
+		ArrayAdapter<ProjectListView>  adapter = new ArrayAdapter<ProjectListView>(this, R.layout.fragment_each_project, projects);
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	

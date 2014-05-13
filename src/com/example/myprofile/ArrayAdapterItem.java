@@ -1,5 +1,7 @@
 package com.example.myprofile;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ArrayAdapterItem extends ArrayAdapter<ProjectItem>{
+import com.example.myprofile.models.ProjectListView;
+
+public class ArrayAdapterItem extends ArrayAdapter<ProjectListView>{
 
 	Context mContext;
 	int layoutResourceId;
-	ProjectItem projects[] = null;
+	List<ProjectListView> projects = null;
 	
-	public ArrayAdapterItem(Context mContext, int layoutResourceId, ProjectItem[] projects){
+	public ArrayAdapterItem(Context mContext, int layoutResourceId, List<ProjectListView> projects){
 		//For the arrayAdapter class
-		super(mContext, layoutResourceId, projects);	
+		super(mContext, layoutResourceId, projects);
 	
 		this.layoutResourceId = layoutResourceId;
 		this.mContext = mContext;
@@ -33,25 +37,45 @@ public class ArrayAdapterItem extends ArrayAdapter<ProjectItem>{
 			convertView = inflater.inflate(layoutResourceId, parent, false);
 		}
 		
-		ProjectItem projectItem = projects[position];
+		ProjectListView projectItem = projects.get(position);
 		
 		if(projectItem != null){
 			
 			//Get the  descript and project name and it
 			TextView projectName = (TextView) convertView.findViewById(R.id.project_name);
-			TextView projectDescription = (TextView) convertView.findViewById(R.id.project_description);
+			TextView projectIntroduction = (TextView) convertView.findViewById(R.id.project_introduction);
 			TextView projectdate = (TextView) convertView.findViewById(R.id.project_date);
 			ImageView programmingLanguage = (ImageView) convertView.findViewById(R.id.project_programming_language);
 
+			//Set project id
+			projectName.setTag(projectItem.getProject().getId());
+
+			//Set projectname
+			projectName.setText(
+						projectItem
+							.getProject()
+							.getProjectName());
 			
+			//Set introduction
+			projectIntroduction.setText(
+					projectItem
+						.getProject()
+						.getProjectIntroduction());
 			
-			projectName.setText(projectItem.getProjectName());
-			projectDescription.setText(projectItem.getProjectDescription());
-			projectdate.setText(projectItem.getProjectDate());
-			programmingLanguage.setImageResource(projectItem.getProgrammingLanguageResourceId());
+			//Set date
+			projectdate.setText(
+					(projectItem
+							.getProject()
+							.getProjectDate()
+					).toString());
 			
+			//Set programming language icon
+			//TODO: Should reflect the correct image url
+//			programmingLanguage.setImageResource(
+//					projectItem
+//						.getProgrammingLanguageResourceId());
+			programmingLanguage.setImageResource(R.drawable.programming_language);
 			
-			projectName.setTag(projectItem.getProjectId());
 
 		}
 		
