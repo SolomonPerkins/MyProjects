@@ -40,17 +40,17 @@ public class ProjectsDao {
 	// Links the Project -> Language
 	//					 -> ProjectImages
 	private String getProjectsListQuery = "SELECT "
-			+ " P."+ ProjectsSQLite.PROJECT_ID + " AS project_id , P."
-				+ ProjectsSQLite.PROJECT_NAME +" AS project_name, P."
-				+ ProjectsSQLite.PROJECT_DATE +" AS project_date, P."
-				+ ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction"
-			+ " PL."+ProjectsSQLite.LANGUAGE_ID + " AS language_id, PL." 
-				+ ProjectsSQLite.LANGUAGE_NAME + "AS language_name, PL." 
-				+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image"
-			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, PI."
-				+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, PI."
-				+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, PI."
-				+ ProjectsSQLite.PROJECT_IMAGE_META + " AS image_meta"
+			+ " P." + ProjectsSQLite.PROJECT_ID + " AS project_id , "
+			+ " P." + ProjectsSQLite.PROJECT_NAME +" AS project_name, " 
+			+ " P." + ProjectsSQLite.PROJECT_DATE +" AS project_date, " 
+			+ " P." + ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction, "
+			+ " PL."+ ProjectsSQLite.LANGUAGE_ID + " AS language_id, " 
+			+ " PL."+ ProjectsSQLite.LANGUAGE_NAME + " AS language_name, " 
+			+ " PL."+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image, "
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, " 
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, " 
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, " 
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_META + " AS image_meta"
 			
 			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P" //Project
 			+ " LEFT JOIN " + ProjectsSQLite.TABLE_LANGUAGE + " AS PL "	//Join Language

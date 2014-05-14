@@ -80,6 +80,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 			+ ", " + LANGUAGE_PROJECT_ID + " INTEGER NOT NULL " 
 			+ ", " + LANGUAGE_NAME + " NVARCHAR(20) NOT NULL" 
 			+ ", " + LANGUAGE_REFERENCE + " NVARCHAR(30) NULL DEFAULT '' " 
+			+ ", " + LANGUAGE_IMAGE_URL + " NVARCHAR(50) NULL DEFAULT 'programming_language.png' "
 			+ ", FOREIGN KEY (" + LANGUAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")"
 			+ " );";
 
@@ -90,6 +91,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 			+ ", " + PROJECT_IMAGE_PROJECT_ID + " INTEGER NOT NULL " 
 			+ ", " + PROJECT_IMAGE_IS_MAIN_IMAGE + " Boolean DEFAULT 0 " 
 			+ ", " + PROJECT_IMAGE_URL + " NVARCHAR(30) NULL DEFAULT 'default.png' "
+			+ ", " + PROJECT_IMAGE_META + " NVARCHAR(100) NULL DEFAULT '' "
 			+ ", FOREIGN KEY (" + PROJECT_IMAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")" 
 			+ " );";
 
@@ -116,6 +118,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(CREATE_PROJECTS_TABLE);
 		database.execSQL(CREATE_PROJECT_DETAILS_TABLE);
+		database.execSQL(CREATE_IMAGE_TABLE);
 		database.execSQL(CREATE_LANGUAGE_TABLE);
 		database.execSQL(CREATE_BIOGRAPHIC_TABLE);
 
@@ -133,6 +136,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECTS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_IMAGE);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGE);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_BIOGRAPHIC);
 
