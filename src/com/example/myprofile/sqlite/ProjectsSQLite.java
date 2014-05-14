@@ -65,17 +65,19 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 	// Create Project details table
 	public static final String CREATE_PROJECT_DETAILS_TABLE = "create table "
-			+ TABLE_PROJECT_DETAILS + " ( " + ", " + PROJECT_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
-			+ PROJECT_DETAILS_PROJECT_ID + " INTEGER NOT NULL " + ", "
-			+ PROJECT_DETAILS_DESCRIPTION + " NVARCHAR(1000) " + ", "
-			+ PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
+			+ TABLE_PROJECT_DETAILS + " ( " 
+			+ PROJECT_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " 
+			+ ", " + PROJECT_DETAILS_PROJECT_ID + " INTEGER NOT NULL " 
+			+ ", " + PROJECT_DETAILS_DESCRIPTION + " NVARCHAR(1000) " 
+			+ ", " + PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
 			+ ", FOREIGN KEY (" + PROJECT_DETAILS_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")" 
 			+ " );";
 
 	// Create Language table
 	public static final String CREATE_LANGUAGE_TABLE = "create table "
-			+ TABLE_LANGUAGE + " ( " + ", " + LANGUAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
-			+ LANGUAGE_PROJECT_ID + " INTEGER NOT NULL " 
+			+ TABLE_LANGUAGE + " ( "  
+			+ LANGUAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " 
+			+ ", " + LANGUAGE_PROJECT_ID + " INTEGER NOT NULL " 
 			+ ", " + LANGUAGE_NAME + " NVARCHAR(20) NOT NULL" 
 			+ ", " + LANGUAGE_REFERENCE + " NVARCHAR(30) NULL DEFAULT '' " 
 			+ ", FOREIGN KEY (" + LANGUAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")"
@@ -83,17 +85,18 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 	// Create Image table
 	public static final String CREATE_IMAGE_TABLE = "create table "
-			+ TABLE_PROJECT_IMAGE + " ( " + ", " + PROJECT_IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " + ", "
-			+ PROJECT_IMAGE_PROJECT_ID + " INTEGER NOT NULL " + ", "
-			+ PROJECT_IMAGE_IS_MAIN_IMAGE + " Boolean DEFAULT 0" + ", "
-			+ PROJECT_IMAGE_URL + " NVARCHAR(30) NULL DEFAULT 'default.png' "
+			+ TABLE_PROJECT_IMAGE + " ( " 
+			+ PROJECT_IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " 
+			+ ", " + PROJECT_IMAGE_PROJECT_ID + " INTEGER NOT NULL " 
+			+ ", " + PROJECT_IMAGE_IS_MAIN_IMAGE + " Boolean DEFAULT 0 " 
+			+ ", " + PROJECT_IMAGE_URL + " NVARCHAR(30) NULL DEFAULT 'default.png' "
 			+ ", FOREIGN KEY (" + PROJECT_IMAGE_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")" 
 			+ " );";
 
 	//Create biographic table
 	public static final String CREATE_BIOGRAPHIC_TABLE = "create table "
 			+ TABLE_BIOGRAPHIC + " ( "
-			+ ", " + BIOGRAPHIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
+			+ BIOGRAPHIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
 			+ ", " + BIOGRAPHIC_PROJECT_ID + " INTEGER NOT NULL "
 			+ ", " + BIOGRAPHIC_TYPE + " NVARCHAR(40) NOT NULL"
 			+ ", " + BIOGRAPHIC_DETAILS + " NVARCHAR(500) NULL DEFAULT '' "

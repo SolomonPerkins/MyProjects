@@ -113,15 +113,14 @@ public class MainActivity extends ActionBarActivity {
 		
 //		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
 		List<ProjectListView> projects = new ArrayList<ProjectListView>();//= projectsDao.getAllProject("date", "DESC");
-		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG);
-	
+		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG).show();
+		
 		//Get ListView object
 		projectsListView = (ListView) findViewById(R.id.projects_list);
 		
-		
 		//Create the arrayadapter
 //		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
-		ArrayAdapter<ProjectListView>  adapter = new ArrayAdapter<ProjectListView>(this, R.layout.fragment_each_project, projects);
+		ArrayAdapterItem  adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projects);
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	
