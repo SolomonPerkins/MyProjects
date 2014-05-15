@@ -93,7 +93,12 @@ public class ProjectImageDao {
 		}
 	}
 
-	
+	/**
+	 * 
+	 * @param orderByColumn
+	 * @param order
+	 * @return
+	 */
 	public List<ProjectImage> getAllProjectImages(String orderByColumn,String order){
 		List<ProjectImage> images = new ArrayList<ProjectImage>();
 	
@@ -115,13 +120,12 @@ public class ProjectImageDao {
 				, allColumns
 				, null, null, null, null, orderByColumn + " " + order);
 		
-		
 		cursor.moveToFirst();
 		
 		//Loop through all data
 		while(!cursor.isAfterLast()){
-			ProjectImage project = cursorToProjectImage(cursor);
-			images.add(project);
+			ProjectImage image = dbUtils.cursorToImage(cursor);
+			images.add(image);
 			
 			//move to the next row
 			cursor.moveToNext();
@@ -135,15 +139,4 @@ public class ProjectImageDao {
 		return images;
 	}
 	
-	public ProjectImage cursorToProjectImage(Cursor cursor){
-		ProjectImage image = new ProjectImage();
-		if(cursor == null){
-			return null;
-		}
-		
-//		image.setId(id);
-		
-		return image;
-		
-	}
 }

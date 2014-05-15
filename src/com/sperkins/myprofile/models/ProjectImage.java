@@ -65,7 +65,7 @@ public class ProjectImage {
 	/**
 	 * @param project_image_url the project_image_url to set
 	 */
-	public void setProjectImageUrl(String project_image_url) {
+	public void setImageUrl(String project_image_url) {
 		this.project_image_url = project_image_url;
 	}
 	
@@ -79,7 +79,7 @@ public class ProjectImage {
 	/**
 	 * @param project_meta the project_meta to set
 	 */
-	public void setProjectMeta(String project_meta) {
+	public void setImageMeta(String project_meta) {
 		this.project_meta = project_meta;
 	}
 	

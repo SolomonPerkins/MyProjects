@@ -40,17 +40,17 @@ public class ProjectsDao {
 	// Links the Project -> Language
 	//					 -> ProjectImages
 	private String getProjectsListQuery = "SELECT "
-			+ " P." + ProjectsSQLite.PROJECT_ID + " AS project_id , "
-			+ " P." + ProjectsSQLite.PROJECT_NAME +" AS project_name, " 
-			+ " P." + ProjectsSQLite.PROJECT_DATE +" AS project_date, " 
-			+ " P." + ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction, "
-			+ " PL."+ ProjectsSQLite.LANGUAGE_ID + " AS language_id, " 
-			+ " PL."+ ProjectsSQLite.LANGUAGE_NAME + " AS language_name, " 
-			+ " PL."+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image, "
-			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, " 
-			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, " 
-			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, " 
-			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_META + " AS image_meta"
+			+ " P." + ProjectsSQLite.PROJECT_ID + " AS project_id , "	//0
+			+ " P." + ProjectsSQLite.PROJECT_NAME +" AS project_name, " //1
+			+ " P." + ProjectsSQLite.PROJECT_DATE +" AS project_date, " //2
+			+ " P." + ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction, "	//3
+			+ " PL."+ ProjectsSQLite.LANGUAGE_ID + " AS language_id, " //4
+			+ " PL."+ ProjectsSQLite.LANGUAGE_NAME + " AS language_name, "	//5 
+			+ " PL."+ ProjectsSQLite.LANGUAGE_IMAGE_URL +" AS language_image, "	//6
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_ID + " AS image_id, " 	//7
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE + " AS is_main, "	//8 
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_URL + " AS image_url, " 	//9
+			+ " PI."+ ProjectsSQLite.PROJECT_IMAGE_META + " AS image_meta"	//10
 			
 			+ " FROM " + ProjectsSQLite.TABLE_PROJECTS + " AS P" //Project
 			+ " LEFT JOIN " + ProjectsSQLite.TABLE_LANGUAGE + " AS PL "	//Join Language
@@ -100,7 +100,7 @@ public class ProjectsDao {
 		cursor.moveToFirst();
 		
 		//Store information about the project created
-		Project newProject = cursorToProject(cursor);
+		Project newProject = dbUtils.cursorToProject(cursor);
 		
 		//close connection
 		cursor.close();
@@ -163,7 +163,7 @@ public class ProjectsDao {
 		cursor.moveToFirst();
 		//Loop through all data
 		while(!cursor.isAfterLast()){
-			ProjectListView project = cursorToProjectListView(cursor);
+			ProjectListView project = dbUtils.cursorToProjectListView(cursor);
 			projects.add(project);
 			
 			//move to the next row
@@ -180,91 +180,4 @@ public class ProjectsDao {
 	
 	
 	
-	/**
-	 * Map cursor data into the project object
-	 * @param cursor
-	 * @return {@link Project}
-	 */
-	private Project cursorToProject(Cursor cursor){
-		Project project = new Project();
-		
-		project.setId(cursor.getLong(0));
-		project.setProjectName(cursor.getString(1));
-		project.setProjectDate(processDate(cursor.getString(2)));
-		project.setProjectIntroduction(cursor.getString(3));
-		
-		return project;
 	}
-	
-	/**
-	 * Maps Data to object for {@link Language}
-	 * @param cursor
-	 * @return
-	 */
-	private Language cursorToLanguage(Cursor cursor){
-		Language language = new Language();
-		language.setId(cursor.getLong(4));	//language_id;
-		language.setLanguage_name(cursor.getString(5));
-		language.setLanguage_image_url(cursor.getString(6));
-		
-		return language;
-	}
-	
-	private ProjectImage cursorToImage(Cursor cursor){
-		ProjectImage image = new ProjectImage();
-		image.setId(cursor.getLong(7));
-		image.setMainImage(dbUtils.getBoolean(cursor, 8));
-		image.setProjectImageUrl(cursor.getString(9));
-		image.setProjectMeta(cursor.getString(10));
-	
-		return image;
-	}
-	
-	/**
-	 * Will populate all the model data for each component on the list view
-	 * @param cursor
-	 * @return
-	 */
-	private ProjectListView cursorToProjectListView(Cursor cursor){
-		ProjectListView listViewItem = new ProjectListView();
-		
-		Project project = cursorToProject(cursor);
-		Language language = cursorToLanguage(cursor);	//should get the language details
-		ProjectImage image = cursorToImage(cursor);	// should get the image details
-		
-		//populating each model
-		listViewItem.setProject(project);
-		listViewItem.setLanguage(language);
-		listViewItem.setProjectImage(image);
-		
-		return listViewItem;
-		
-	}
-	
-	/**
-	 * converts a string date into a Date object 
-	 * @param string_date
-	 * @return (sql)Date
-	 */
-	public Date processDate(String string_date){
-			//TODO: string date should be converted to Date format
-			
-
-			try {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				Date date;
-				
-				date = (Date) format.parse(string_date);
-				
-				Log.w("Convert string to date", "Convert string ("+ string_date + ") to (date "+ date.toString() +")");		
-				return date;
-
-			} catch (ParseException e) {
-				
-				e.printStackTrace();
-				return null;
-			}
-						
-		
-	}
-}
