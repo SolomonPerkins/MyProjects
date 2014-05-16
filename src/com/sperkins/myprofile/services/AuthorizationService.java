@@ -1,4 +1,4 @@
-package com.example.myprofile.services;
+package com.sperkins.myprofile.services;
 
 import android.app.Service;
 import android.content.Intent;

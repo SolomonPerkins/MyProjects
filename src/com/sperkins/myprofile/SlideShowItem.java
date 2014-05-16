@@ -1,4 +1,4 @@
-package com.example.myprofile;
+package com.sperkins.myprofile;
 
 
 public class SlideShowItem {

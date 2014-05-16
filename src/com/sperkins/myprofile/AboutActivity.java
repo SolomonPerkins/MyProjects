@@ -1,4 +1,6 @@
-package com.example.myprofile;
+package com.sperkins.myprofile;
+
+import com.example.myprofile.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

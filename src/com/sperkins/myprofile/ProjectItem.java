@@ -1,4 +1,4 @@
-package com.example.myprofile;
+package com.sperkins.myprofile;
 
 import java.text.SimpleDateFormat;
 

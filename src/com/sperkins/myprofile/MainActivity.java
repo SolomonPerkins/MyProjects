@@ -1,22 +1,25 @@
-package com.example.myprofile;
+package com.sperkins.myprofile;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-import android.app.FragmentTransaction;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
+//Include SQLite funcationality
+import android.widget.Toast;
+//include basic date utils functions
+
+import com.example.myprofile.R;
+import com.sperkins.myprofile.models.ProjectListView;
+import com.sperkins.myprofile.services.localDbService;
 
 public class MainActivity extends ActionBarActivity {
+	
+	private localDbService localdb;
 	
 	ListView projectsListView;
 	ListView slideShowListView;
@@ -34,8 +37,13 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		//The wrapper for all local storage functions
+		//Also sync the database provided that there is new incoming data
+		localdb = new localDbService(this);
+				
 		setUpDetailsView();
+		
 		//Loads the data
 		getProjectList();
 		
@@ -90,37 +98,26 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void getProjectList(){
 		
-		ProjectItem[] projectItems = new ProjectItem[20];
-		Calendar calendar = Calendar.getInstance();
+		//Open the database
+//		projectsDao.open();
+//		Date date = new Date();
 		
-		String today = "/Apr 5,2014";
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
 		
-		projectItems[0] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[1] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[2] = new ProjectItem(1, "Body Mass Index", today, "Some extra stuff", R.drawable.java);
-		projectItems[3] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[4] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[5] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[6] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[7] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[8] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[9] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[10] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[11] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[12] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[13] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[14] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[15] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[16] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[17] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[18] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
-		projectItems[19] = new ProjectItem(1, "My Project", today, "Some extra stuff", R.drawable.programming_language);
+//		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
+		List<ProjectListView> projects = localdb.getProjects();
+		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG).show();
 		
 		//Get ListView object
 		projectsListView = (ListView) findViewById(R.id.projects_list);
 		
 		//Create the arrayadapter
-		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
+//		ArrayAdapterItem adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projectItems);
+		ArrayAdapterItem  adapter = new ArrayAdapterItem(this, R.layout.fragment_each_project, projects);
 		
 		//Assign adapter to list
 		projectsListView.setAdapter(adapter);	
