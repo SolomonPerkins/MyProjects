@@ -2,6 +2,7 @@ package com.sperkins.myprofile.sqlite;
 
 import com.sperkins.myprofile.models.Project;
 import com.sperkins.myprofile.models.ProjectDetails;
+import com.sperkins.myprofile.utils.DatabaseUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,8 +21,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 		,	ProjectDetailsSQLite.PROJECT_DETAILS_DIFFICULTY
 	};
 	
-	
-	
+	private DatabaseUtils dbUtils = new DatabaseUtils();
 	
 	public ProjectDetailsDao(Context context){
 		dbHelper = new ProjectsSQLite(context);
@@ -68,7 +68,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 //		cursor.moveToFirst();
 //		
 		//Store information about the project created
-		ProjectDetails newProject = cursorToProjectDetails(cursor);
+		ProjectDetails newProject = dbUtils.cursorToProjectDetails(cursor);
 		
 		//close connection
 		cursor.close();
@@ -97,11 +97,6 @@ public class ProjectDetailsDao extends BasicCRUD{
 		}
 	}
 	
-	
-	public ProjectDetails cursorToProjectDetails(Cursor cursor){
-		
-		return null;
-	}
 	
 	
 }

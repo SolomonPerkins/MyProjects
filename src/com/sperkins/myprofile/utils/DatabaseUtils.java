@@ -1,16 +1,17 @@
 package com.sperkins.myprofile.utils;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import com.sperkins.myprofile.models.Language;
-import com.sperkins.myprofile.models.Project;
-import com.sperkins.myprofile.models.ProjectImage;
-import com.sperkins.myprofile.models.ProjectListView;
+import java.util.Date;
 
 import android.database.Cursor;
 import android.util.Log;
+
+import com.sperkins.myprofile.models.Language;
+import com.sperkins.myprofile.models.Project;
+import com.sperkins.myprofile.models.ProjectDetails;
+import com.sperkins.myprofile.models.ProjectImage;
+import com.sperkins.myprofile.models.ProjectListView;
 
 public class DatabaseUtils {
 	private  String database_name;
@@ -151,6 +152,25 @@ public class DatabaseUtils {
 	}
 	
 	/**
+	 * TODO: Return the project details based on cursor information
+	 * @param cursor
+	 * @return
+	 */
+	public ProjectDetails cursorToProjectDetails(Cursor cursor){
+		if(cursor == null){
+			return null;
+		}
+		
+		ProjectDetails details = new ProjectDetails();
+//		details.setId(cursor.getLong(cursor));
+		
+		
+		return details;
+	
+	}
+	
+	
+	/**
 	 * converts a string date into a Date object 
 	 * @param string_date
 	 * @return (sql)Date
@@ -168,12 +188,11 @@ public class DatabaseUtils {
 				return date;
 
 			} catch (ParseException e) {
-				
+				Log.e("processDate", "Unabel to parse date for : " + string_date);
 				e.printStackTrace();
 				return null;
 			}
-						
-		
+
 	}
 
 }

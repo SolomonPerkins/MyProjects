@@ -112,6 +112,12 @@ public class MainActivity extends ActionBarActivity {
 		projectsDao.open();
 		Date date = new Date();
 		
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+//		projectsDao.insertDa();
+		
 //		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
 		List<ProjectListView> projects = projectsDao.getAllProject("date", "DESC");
 		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG).show();

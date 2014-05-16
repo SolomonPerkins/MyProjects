@@ -115,7 +115,7 @@ public class ProjectImageDao {
 			
 		}
 		
-		//TODO: Use rawQuery instead
+		//TODO: Use rawQuery instead to link 
 		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECT_IMAGE
 				, allColumns
 				, null, null, null, null, orderByColumn + " " + order);

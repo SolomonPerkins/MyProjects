@@ -1,6 +1,7 @@
 package com.sperkins.myprofile.models;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 
 /**

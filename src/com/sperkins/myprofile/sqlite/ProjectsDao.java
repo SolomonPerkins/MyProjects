@@ -42,7 +42,7 @@ public class ProjectsDao {
 	private String getProjectsListQuery = "SELECT "
 			+ " P." + ProjectsSQLite.PROJECT_ID + " AS project_id , "	//0
 			+ " P." + ProjectsSQLite.PROJECT_NAME +" AS project_name, " //1
-			+ " P." + ProjectsSQLite.PROJECT_DATE +" AS project_date, " //2
+			+ " (P." + ProjectsSQLite.PROJECT_DATE +") AS project_date, " //2
 			+ " P." + ProjectsSQLite.PROJECT_INTRODUCTION + " AS project_introduction, "	//3
 			+ " PL."+ ProjectsSQLite.LANGUAGE_ID + " AS language_id, " //4
 			+ " PL."+ ProjectsSQLite.LANGUAGE_NAME + " AS language_name, "	//5 
@@ -166,6 +166,8 @@ public class ProjectsDao {
 			ProjectListView project = dbUtils.cursorToProjectListView(cursor);
 			projects.add(project);
 			
+//			Log.w("Data: ", cursor.getLong(0) + " " + cursor.getString(2));
+			
 			//move to the next row
 			cursor.moveToNext();
 		}
@@ -179,5 +181,36 @@ public class ProjectsDao {
 	}
 	
 	
-	
-	}
+	public void insertDa(){
+		ContentValues insert = new ContentValues();
+		
+		//project
+		insert.put(ProjectsSQLite.PROJECT_NAME, "Trial");
+		insert.put(ProjectsSQLite.PROJECT_DATE, "2014-04-04");
+		insert.put(ProjectsSQLite.PROJECT_INTRODUCTION, "Basic introduction");
+		
+		long project_id = database.insert(ProjectsSQLite.TABLE_PROJECTS, null, insert);
+		
+		insert = new ContentValues();
+		
+		//Language
+		insert.put(ProjectsSQLite.LANGUAGE_PROJECT_ID, project_id);
+		insert.put(ProjectsSQLite.LANGUAGE_NAME, "C++");
+		insert.put(ProjectsSQLite.LANGUAGE_IMAGE_URL, "programming_language.png");
+		
+		long lan_id = database.insert(ProjectsSQLite.TABLE_LANGUAGE, null, insert);
+		
+		insert = new ContentValues();
+		
+		//Image
+		insert.put(ProjectsSQLite.PROJECT_IMAGE_PROJECT_ID, project_id);
+		insert.put(ProjectsSQLite.PROJECT_IMAGE_IS_MAIN_IMAGE, 1);
+		insert.put(ProjectsSQLite.PROJECT_IMAGE_URL, "car.jpg");
+		insert.put(ProjectsSQLite.PROJECT_IMAGE_META, "of course it is a car");
+		
+		long image_id = database.insert(ProjectsSQLite.TABLE_PROJECT_IMAGE, null, insert);
+		
+		Log.w("Insert", "project id: "+ project_id  + " language " + lan_id + " image id : "+ image_id);
+		
+	}	
+}
