@@ -1,10 +1,13 @@
 package com.sperkins.myprofile.models;
 
+import java.util.List;
+
 public class ProjectDetails {
 	private long id;
 	private long project_id;
 	private String project_description;
 	private String project_difficulty;
+	private List<ProjectFeature> featuresList;
 	
 	/**
 	 * @return the id
@@ -56,5 +59,12 @@ public class ProjectDetails {
 		this.project_difficulty = project_difficulty;
 	}
 	
+	public void setProjectFeaturesList(List<ProjectFeature> features){
+		this.featuresList = features;
+	}
+	
+	public List<ProjectFeature> getProjectFeaturesList(){
+		return this.featuresList;
+	}
 	
 }

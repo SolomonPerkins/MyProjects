@@ -164,8 +164,10 @@ public class ProjectsDao {
 		//Loop through all data
 		while(!cursor.isAfterLast()){
 			ProjectListView project = dbUtils.cursorToProjectListView(cursor);
-			projects.add(project);
 			
+			if(project != null){
+				projects.add(project);
+			}
 //			Log.w("Data: ", cursor.getLong(0) + " " + cursor.getString(2));
 			
 			//move to the next row

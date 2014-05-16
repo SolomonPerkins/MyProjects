@@ -3,6 +3,7 @@ package com.sperkins.myprofile.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.database.Cursor;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.util.Log;
 import com.sperkins.myprofile.models.Language;
 import com.sperkins.myprofile.models.Project;
 import com.sperkins.myprofile.models.ProjectDetails;
+import com.sperkins.myprofile.models.ProjectFeature;
 import com.sperkins.myprofile.models.ProjectImage;
 import com.sperkins.myprofile.models.ProjectListView;
 
@@ -154,7 +156,7 @@ public class DatabaseUtils {
 	/**
 	 * TODO: Return the project details based on cursor information
 	 * @param cursor
-	 * @return
+	 * @return 
 	 */
 	public ProjectDetails cursorToProjectDetails(Cursor cursor){
 		if(cursor == null){
@@ -168,8 +170,39 @@ public class DatabaseUtils {
 		return details;
 	
 	}
-	
-	
+
+	public ProjectDetails cursorToDetails(Cursor cursor){
+		if(cursor == null){
+			return null;
+		}
+		
+		ProjectDetails details = new ProjectDetails();
+		details.setId(cursor.getLong(0));
+		details.setProject_id(cursor.getLong(1));
+		details.setProject_description(cursor.getString(2));
+		details.setProject_difficulty(cursor.getString(3));
+		
+		return details;
+	}
+
+
+	/**
+	 * 
+	 * @param cursor
+	 * @return {@link ProjectFeature}
+	 */
+	public ProjectFeature cursorToFeatures(Cursor cursor){
+		if(cursor == null){
+			return null;
+		}
+		
+		ProjectFeature feature = new ProjectFeature();
+		feature.setId(cursor.getLong(0));
+		feature.setFeature(cursor.getString(1));
+		feature.setType(cursor.getString(2));
+		
+		return feature;
+	}
 	/**
 	 * converts a string date into a Date object 
 	 * @param string_date
@@ -194,5 +227,6 @@ public class DatabaseUtils {
 			}
 
 	}
+
 
 }

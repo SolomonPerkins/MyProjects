@@ -23,6 +23,14 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 	public static final String PROJECT_DETAILS_DESCRIPTION = "description";
 	public static final String PROJECT_DETAILS_DIFFICULTY = "difficulty";
 
+	//Project Feature
+	public static final String TABLE_PROJECT_FEATURES = "ProjectFeatures";
+	public static final String PROJECT_FEATURES_ID = "id";
+	public static final String PROJECT_FEATURES_PROJECT_ID = "project_id"; // reference the project
+	public static final String PROJECT_FEATURES_PROJECT_FEATURE = "feature";
+	public static final String PROJECT_FEATURES_PROJECT_TYPE = "type";
+			
+	
 	// Language Table Columns
 	public static final String TABLE_LANGUAGE = "Language";
 	public static final String LANGUAGE_ID = "id";
@@ -72,7 +80,17 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 			+ ", " + PROJECT_DETAILS_DIFFICULTY + " NVARCHAR(15) DEFAULT 'Easy' "
 			+ ", FOREIGN KEY (" + PROJECT_DETAILS_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")" 
 			+ " );";
-
+	
+	//Create project features table
+	public static final String CREATE_PROJECT_FEATURE_TABLE = "create table "
+			+ TABLE_PROJECT_FEATURES + " ( "
+			+ PROJECT_FEATURES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
+			+ ", " + PROJECT_FEATURES_PROJECT_ID + " INTEGER NOT NULL "
+			+ ", " + PROJECT_FEATURES_PROJECT_FEATURE + " NVARCHAR(300) NOT NULL "
+			+ ", " + PROJECT_FEATURES_PROJECT_TYPE + " NVARCHAR(20) NULL"
+			+ ", FOREIGN KEY (" + PROJECT_FEATURES_PROJECT_ID + ") REFERENCES Projects(" + PROJECT_ID + ")"
+			+ " );";
+			
 	// Create Language table
 	public static final String CREATE_LANGUAGE_TABLE = "create table "
 			+ TABLE_LANGUAGE + " ( "  
@@ -118,6 +136,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(CREATE_PROJECTS_TABLE);
 		database.execSQL(CREATE_PROJECT_DETAILS_TABLE);
+		database.execSQL(CREATE_PROJECT_FEATURE_TABLE);
 		database.execSQL(CREATE_IMAGE_TABLE);
 		database.execSQL(CREATE_LANGUAGE_TABLE);
 		database.execSQL(CREATE_BIOGRAPHIC_TABLE);
@@ -136,6 +155,7 @@ public class ProjectsSQLite extends SQLiteOpenHelper {
 
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECTS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_DETAILS);
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_FEATURES);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT_IMAGE);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_LANGUAGE);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_BIOGRAPHIC);
