@@ -153,14 +153,11 @@ public class ProjectsDao {
 			
 		}
 		
-		//TODO: Use rawQuery instead
-//		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECTS
-//				, allColumns
-//				, null, null, null, null, orderByColumn + " " + order);
-		
+		//Link projects to language, main image.
 		Cursor cursor = database.rawQuery(getProjectsListQuery, null);
 		
 		cursor.moveToFirst();
+		
 		//Loop through all data
 		while(!cursor.isAfterLast()){
 			ProjectListView project = dbUtils.cursorToProjectListView(cursor);

@@ -75,8 +75,7 @@ public class BasicCRUD {
 		
 	}
 	
-	public Object update(){
-		
+	public Object update(){	
 		return null;
 	}
 	

@@ -25,19 +25,6 @@ public class ProjectDetailsDao extends BasicCRUD{
 		,	ProjectDetailsSQLite.PROJECT_DETAILS_DIFFICULTY
 	};
 	
-	private long project_id;
-	private String getFeaturesListQuery = "SELECT "
-			+ " PF." + ProjectsSQLite.PROJECT_FEATURES_ID + " AS feature_id "
-			+ ", PF." + ProjectsSQLite.PROJECT_FEATURES_PROJECT_FEATURE + " AS feature"
-			+ ", PF." + ProjectsSQLite.PROJECT_FEATURES_PROJECT_TYPE + " AS feature_type"
-			+ " FROM " + ProjectsSQLite.TABLE_PROJECT_FEATURES + " AS PF"
-			+ " WHERE " + ProjectsSQLite.PROJECT_FEATURES_PROJECT_ID +" = " + project_id;
-	
-	//Used to set the project Id which will be used in queries
-	public ProjectDetailsDao(long project_id){
-		this.project_id = project_id;
-	}
-
 	
 	private DatabaseUtils dbUtils = new DatabaseUtils();
 	
@@ -74,18 +61,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 		values.put(ProjectDetailsSQLite.PROJECT_DETAILS_DIFFICULTY, difficulty);
 	
 		Cursor cursor = this.create(values, allColumns, ProjectDetailsSQLite.PROJECT_DETAILS_ID);
-//		//Insert values
-//		long insertId = database.insert(ProjectDetailsSQLite.TABLE_PROJECT_DETAILS, null, values);
-//	
-//		//Store results returned in a cursor.
-//		Cursor cursor = database.query(ProjectDetailsSQLite.TABLE_PROJECT_DETAILS
-//				, allColumns
-//				, ProjectDetailsSQLite.PROJECT_DETAILS_ID + " = " + insertId
-//				, null, null, null, null);
-//		
-//		//Return to the first element in the list
-//		cursor.moveToFirst();
-//		
+
 		//Store information about the project created
 		ProjectDetails newProject = dbUtils.cursorToProjectDetails(cursor);
 		
@@ -97,12 +73,20 @@ public class ProjectDetailsDao extends BasicCRUD{
 		
 	}
 	
-	public List<ProjectFeature> getProjectFeatures(){
+	public List<ProjectFeature> getProjectFeatures(long project_id){
 		if(project_id <= 0 ){
 			Log.w("get project features", "unable to get features with id : "+ project_id);	
 			
 			return null;
 		}
+		
+		String getFeaturesListQuery = "SELECT "
+				+ " PF." + ProjectsSQLite.PROJECT_FEATURES_ID + " AS feature_id "
+				+ ", PF." + ProjectsSQLite.PROJECT_FEATURES_PROJECT_FEATURE + " AS feature"
+				+ ", PF." + ProjectsSQLite.PROJECT_FEATURES_PROJECT_TYPE + " AS feature_type"
+				+ " FROM " + ProjectsSQLite.TABLE_PROJECT_FEATURES + " AS PF"
+				+ " WHERE " + ProjectsSQLite.PROJECT_FEATURES_PROJECT_ID +" = " + project_id;
+		
 		
 		List<ProjectFeature> features = new ArrayList<ProjectFeature>();
 		
@@ -147,7 +131,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 	 * Returns only the details not extracted by projectsDao
 	 * @return
 	 */
-	public ProjectDetails getProjectDetails(){
+	public ProjectDetails getProjectDetails(long project_id){
 		
 		ProjectDetails details = new ProjectDetails();
 		
@@ -158,7 +142,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 				, null, null, null);
 		
 		details = dbUtils.cursorToProjectDetails(cursor);
-		details.setProjectFeaturesList(this.getProjectFeatures());
+		details.setProjectFeaturesList(this.getProjectFeatures(project_id));
 		
 		return details;
 	}
