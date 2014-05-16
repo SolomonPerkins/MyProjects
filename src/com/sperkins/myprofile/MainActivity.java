@@ -1,10 +1,6 @@
 package com.sperkins.myprofile;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import android.content.Intent;
@@ -12,25 +8,18 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 //Include SQLite funcationality
-
-
 import android.widget.Toast;
+//include basic date utils functions
 
 import com.example.myprofile.R;
-//include basic date utils functions
-import com.sperkins.myprofile.models.Project;
 import com.sperkins.myprofile.models.ProjectListView;
-import com.sperkins.myprofile.sqlite.ProjectsDao;
-import com.sperkins.myprofile.utils.DateUtils;
+import com.sperkins.myprofile.services.localDbService;
 
 public class MainActivity extends ActionBarActivity {
 	
-	private ProjectsDao projectsDao;
-	private DateUtils dateUtils = new DateUtils();
+	private localDbService localdb;
 	
 	ListView projectsListView;
 	ListView slideShowListView;
@@ -48,10 +37,11 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		projectsDao = new ProjectsDao(this);
 		
-		
+		//The wrapper for all local storage functions
+		//Also sync the database provided that there is new incoming data
+		localdb = new localDbService(this);
+				
 		setUpDetailsView();
 		
 		//Loads the data
@@ -109,8 +99,8 @@ public class MainActivity extends ActionBarActivity {
 	public void getProjectList(){
 		
 		//Open the database
-		projectsDao.open();
-		Date date = new Date();
+//		projectsDao.open();
+//		Date date = new Date();
 		
 //		projectsDao.insertDa();
 //		projectsDao.insertDa();
@@ -119,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
 //		projectsDao.insertDa();
 		
 //		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
-		List<ProjectListView> projects = projectsDao.getAllProject("date", "DESC");
+		List<ProjectListView> projects = localdb.getProjects();
 		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG).show();
 		
 		//Get ListView object

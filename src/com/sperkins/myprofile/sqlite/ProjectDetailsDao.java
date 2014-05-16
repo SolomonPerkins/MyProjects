@@ -135,6 +135,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 		
 		ProjectDetails details = new ProjectDetails();
 		
+		//Get details
 		Cursor cursor = database.query(ProjectsSQLite.TABLE_PROJECT_DETAILS
 				, allColumns
 				, ProjectsSQLite.PROJECT_DETAILS_PROJECT_ID + "=?" 
@@ -142,6 +143,8 @@ public class ProjectDetailsDao extends BasicCRUD{
 				, null, null, null);
 		
 		details = dbUtils.cursorToProjectDetails(cursor);
+		
+		//Get the features
 		details.setProjectFeaturesList(this.getProjectFeatures(project_id));
 		
 		return details;
