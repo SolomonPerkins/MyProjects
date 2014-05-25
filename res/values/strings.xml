@@ -5,11 +5,14 @@
     <string name="home_link">/Projects</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_about">/About /Contacts</string>
-
+	<string name="description">This is a description of the application</string>
+    
     <!-- Project Info -->
     <string name="title_activity_about">/Who am I?</string>
 
     <!-- About us page -->
     <string name="my_name">Solomon H. Perkins</string>
+    
+    
     
 </resources>

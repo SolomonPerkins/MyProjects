@@ -1,26 +1,27 @@
 package com.sperkins.myprofile;
 
-import com.example.myprofile.R;
+import java.util.List;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.sperkins.myprofile.R;
+import com.sperkins.myprofile.models.ProjectFeature;
+import com.sperkins.myprofile.services.localDbService;
+
+/**
+ * Manages all the basic functionality relating to the details view.
+ * @author alexforce
+ *
+ */
 public class DetailsView_Fragment extends Fragment{
 		
 	private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
@@ -39,6 +40,8 @@ public class DetailsView_Fragment extends Fragment{
 	
 	private ViewFlipper slideShowFlipper;
 	
+	private localDbService localdb;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 					ViewGroup container, Bundle savedInstanceState){
@@ -47,6 +50,8 @@ public class DetailsView_Fragment extends Fragment{
 				, container, false);
 		
 		slideShowFlipper = (ViewFlipper) iFlaterView.findViewById(R.id.detail_slideshow);
+		
+		localdb = new localDbService(container.getContext());
 		
 		return iFlaterView;
 	}
@@ -84,6 +89,10 @@ public class DetailsView_Fragment extends Fragment{
 
 		this.addDetailsToFragment();
 	}
+	
+	/**
+	 * After details get set retrieved then add them to the fragment elements
+	 */
 	public void addDetailsToFragment(){
 		//get each element from the fragment
 		projectNameElement = (TextView) this.getView().findViewById(R.id.project_details_name_content);	//Project name should be at the top of the action bar
@@ -148,6 +157,11 @@ public class DetailsView_Fragment extends Fragment{
 
 	protected void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+	
+	public void setupProjectFeatures(){
+//		List<ProjectFeature> featureList = localdb.getProjectDetails(selectedProjectId);
+		
 	}
 	
 	

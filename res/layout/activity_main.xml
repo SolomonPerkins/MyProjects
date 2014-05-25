@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myprofile.MainActivity"
+    tools:context="com.sperkins.myprofile.MainActivity"
     tools:ignore="MergeRootFrame" >
     
    <ListView 
@@ -14,7 +14,7 @@
 	        
    <fragment 
        android:id="@+id/details_fragment"
-       android:name="com.example.myprofile.DetailsView_Fragment"
+       android:name="com.sperkins.myprofile.DetailsView_Fragment"
        android:layout_width="fill_parent"
        android:layout_height="fill_parent"/>
     

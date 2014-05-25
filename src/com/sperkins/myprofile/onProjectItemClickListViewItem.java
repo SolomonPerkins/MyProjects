@@ -1,22 +1,11 @@
 package com.sperkins.myprofile;
 
-import com.example.myprofile.R;
-
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
-import android.widget.ViewFlipper;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class onProjectItemClickListViewItem implements OnItemClickListener{

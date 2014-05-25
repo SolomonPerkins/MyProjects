@@ -1,12 +1,9 @@
 package com.sperkins.myprofile;
 
-import com.example.myprofile.R;
-
 import android.content.Context;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class SwipeGestureDetector extends SimpleOnGestureListener {
