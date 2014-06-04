@@ -87,6 +87,7 @@ public class DetailsView_Fragment extends Fragment{
 		this.setIntroductionMessage(project_introduction);
 		this.setDescriptionMessage(project_description);
 
+		
 		this.addDetailsToFragment();
 	}
 	
