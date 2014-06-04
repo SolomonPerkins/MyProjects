@@ -178,9 +178,9 @@ public class DatabaseUtils {
 		
 		ProjectDetails details = new ProjectDetails();
 		details.setId(cursor.getLong(0));
-		details.setProject_id(cursor.getLong(1));
-		details.setProject_description(cursor.getString(2));
-		details.setProject_difficulty(cursor.getString(3));
+		details.setProjectId(cursor.getLong(1));
+		details.setProjectDescription(cursor.getString(2));
+		details.setProjectDifficulty(cursor.getString(3));
 		
 		return details;
 	}
