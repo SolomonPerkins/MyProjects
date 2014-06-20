@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SPerkins/Projects</string>
+    <string name="home_link">/Projects</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_about">/About /Contacts</string>
+
+    <!-- Project Info -->
+    <string name="title_activity_about">/Who am I?</string>
+
+    <!-- About us page -->
+    <string name="my_name">Solomon H. Perkins</string>
+    
+</resources>

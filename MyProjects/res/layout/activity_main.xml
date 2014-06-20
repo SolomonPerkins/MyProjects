@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sperkins.myprofile.MainActivity"
+    tools:ignore="MergeRootFrame" >
+    
+   <ListView 
+       android:id="@+id/projects_list"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+   </ListView>
+	        
+   <fragment 
+       android:id="@+id/details_fragment"
+       android:name="com.sperkins.myprofile.DetailsView_Fragment"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"/>
+    
+</FrameLayout>
