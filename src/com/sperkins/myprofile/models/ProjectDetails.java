@@ -5,6 +5,8 @@ import java.util.List;
 public class ProjectDetails {
 	private long id;
 	private long project_id;
+	private String project_name;
+	private String project_introduction;
 	private String project_description;
 	private String project_difficulty;
 	private List<ProjectFeature> featuresList;
@@ -25,37 +27,59 @@ public class ProjectDetails {
 	/**
 	 * @return the project_id
 	 */
-	public long getProject_id() {
+	public long getProjectId() {
 		return project_id;
 	}
 	/**
 	 * @param project_id the project_id to set
 	 */
-	public void setProject_id(long project_id) {
+	public void setProjectId(long project_id) {
 		this.project_id = project_id;
 	}
+	
+	public String getProjectName() {
+		return project_name;
+	}
+	/**
+	 * @param project_id the project_id to set
+	 */
+	public void setProjectName(String name) {
+		this.project_name = name;
+	}
+	
+	public String getProjectIntroduction() {
+		return project_introduction;
+	}
+	/**
+	 * @param project_id the project_id to set
+	 */
+	public void setProjectIntroduction(String introduction) {
+		this.project_introduction = introduction;
+	}
+
+	
 	/**
 	 * @return the project_description
 	 */
-	public String getProject_description() {
+	public String getProjectDescription() {
 		return project_description;
 	}
 	/**
 	 * @param project_description the project_description to set
 	 */
-	public void setProject_description(String project_description) {
+	public void setProjectDescription(String project_description) {
 		this.project_description = project_description;
 	}
 	/**
 	 * @return the project_difficulty
 	 */
-	public String getProject_difficulty() {
+	public String getProjectDifficulty() {
 		return project_difficulty;
 	}
 	/**
 	 * @param project_difficulty the project_difficulty to set
 	 */
-	public void setProject_difficulty(String project_difficulty) {
+	public void setProjectDifficulty(String project_difficulty) {
 		this.project_difficulty = project_difficulty;
 	}
 	

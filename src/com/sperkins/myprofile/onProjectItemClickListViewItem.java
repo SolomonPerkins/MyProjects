@@ -1,22 +1,12 @@
 package com.sperkins.myprofile;
 
-import com.example.myprofile.R;
-
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.util.Log;
+import android.net.ParseException;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
-import android.widget.ViewFlipper;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class onProjectItemClickListViewItem implements OnItemClickListener{
@@ -49,7 +39,9 @@ public class onProjectItemClickListViewItem implements OnItemClickListener{
 		//setup projects details
 		// the description is empty as it is not stored on the list view. Service call will be used to extract these data from external sources 
 		//and store them into liteSql for future references.
-		myDetailsFragment.setupDetails(tag,project_name, project_introduction, "");
+//		myDetailsFragment.setupDetails(tag,project_name, project_introduction, "");
+		Long project_id = Long.parseLong(tag);
+		myDetailsFragment.setupDetails(project_id, project_name, project_introduction );
 		myDetailsFragment.showDetailsView();
 		
 	}

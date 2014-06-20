@@ -115,7 +115,7 @@ public class ProjectDetailsDao extends BasicCRUD{
 	public void deleteProjectDetails(ProjectDetails projectDetails){
 		long id = projectDetails.getId();
 		
-		Log.w("Delete project", "Deleting project details "+ projectDetails.getProject_id());
+		Log.w("Delete project", "Deleting project details "+ projectDetails.getProjectId());
 		
 		if(id <= 0 ){
 			Log.w("Delete project details", "unable to delete project with id : "+ id);

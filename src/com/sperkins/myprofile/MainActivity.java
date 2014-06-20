@@ -13,16 +13,19 @@ import android.widget.ListView;
 import android.widget.Toast;
 //include basic date utils functions
 
-import com.example.myprofile.R;
+import com.sperkins.myprofile.R;
 import com.sperkins.myprofile.models.ProjectListView;
 import com.sperkins.myprofile.services.localDbService;
 
 public class MainActivity extends ActionBarActivity {
 	
+	//Will perfom all the services for the db (CRUDS, Sqlite<--Sync-->Server etc)
 	private localDbService localdb;
 	
 	ListView projectsListView;
 	ListView slideShowListView;
+	
+	//Store your intentions
 	Intent intent;
 	
 	//MyFragments
@@ -31,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
 	boolean mIsAnimating = false;
 	boolean mSlideUp = false;
 	
-	public final static String INTENT_Message = "com.example.myproject.MESSAGE";
+	public final static String INTENT_Message = "com.sperkins.myproject.MESSAGE";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +49,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Loads the data
 		getProjectList();
-		
-		//Show slideshow list
-//		getSlideShowList();
-		
-		/*FragmentManager fragManager = getFragmentManager();
-		FragmentTransaction ft = fragManager.beginTransaction();
-		DetailsView_Fragment df = new DetailsView_Fragment();
-		ft.show(df);
-		ft.commit();*/
 		
 		
 	}
@@ -99,15 +93,7 @@ public class MainActivity extends ActionBarActivity {
 	public void getProjectList(){
 		
 		//Open the database
-//		projectsDao.open();
-//		Date date = new Date();
-		
-//		projectsDao.insertDa();
-//		projectsDao.insertDa();
-//		projectsDao.insertDa();
-//		projectsDao.insertDa();
-//		projectsDao.insertDa();
-		
+	
 //		projectsDao.createProject("Trial",  "2014-04-04", "Welcome to the end of the world");		
 		List<ProjectListView> projects = localdb.getProjects();
 		Toast.makeText(getApplicationContext(), "Total projects " + projects.size(), Toast.LENGTH_LONG).show();

@@ -94,6 +94,7 @@
 		    android:id="@+id/project_details_feature_title"
 		    android:text="Features"
 		    android:layout_below="@id/project_details_introduction_content"/>
+		
 		<!--  details for features -->
 		<ListView 
 		    android:id="@+id/project_details_feature_list"

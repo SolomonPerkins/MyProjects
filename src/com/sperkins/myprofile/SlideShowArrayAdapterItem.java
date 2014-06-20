@@ -1,7 +1,5 @@
 package com.sperkins.myprofile;
 
-import com.example.myprofile.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

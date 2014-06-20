@@ -11,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myprofile.R;
 import com.sperkins.myprofile.models.ProjectListView;
 
+/**
+ * Used to populate the main page containing the list of projects
+ */
 public class ArrayAdapterItem extends ArrayAdapter<ProjectListView>{
 
 	Context mContext;
@@ -42,7 +44,7 @@ public class ArrayAdapterItem extends ArrayAdapter<ProjectListView>{
 		
 		if(projectItem != null){
 			
-			//Get the  descript and project name and it
+			//Get the  view elements in fragment
 			TextView projectName = (TextView) convertView.findViewById(R.id.project_name);
 			TextView projectIntroduction = (TextView) convertView.findViewById(R.id.project_introduction);
 			TextView projectdate = (TextView) convertView.findViewById(R.id.project_date);
